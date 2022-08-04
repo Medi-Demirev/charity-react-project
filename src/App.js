@@ -1,7 +1,9 @@
+
 import { Routes, Route } from 'react-router-dom';
 import ContactPage from './components/ContactPage/ContactPage';
 import Login from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
+import ErrorPage from './components/404/ErrorPage';
 
 import HeaderTopbar from './components/HeaderTopbar/HeaderTopbar';
 import Header from './components/Header/Header';
@@ -17,6 +19,7 @@ function App() {
            <Route path='/contact' element={<ContactPage/>}/>;
            <Route path='/login' element={<Login/>}/>;
            <Route path='/register' element={<RegisterPage/>}/>
+           <Route path='/*' element={<ErrorPage/>}/>
         
           </Routes>
 

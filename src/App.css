@@ -116,7 +116,7 @@ li{
   -ms-border-radius: 0;
   border-radius: 40px;
   position: relative;
-  background: -webkit-linear-gradient(left,#18b760,#e9bf3d 50%,#18b760);
+  background: -webkit-linear-gradient(left,#f55c23,#e9bf3d 50%,#f55c23);
   background-size: 200%,1px;
   background-position: 0;
   transition: all .3s;
