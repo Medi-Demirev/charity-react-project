@@ -6,7 +6,7 @@ form {
     display: inline-block;
     text-align: center;
     position: relative;
-    width: 350px;
+    width: 450px;
     height: 550px;
     border-radius: 20px;
     padding: 40px;
@@ -19,8 +19,13 @@ form {
 #loginPage {
     display: block;
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 90px;
+    padding-top: 40px;
+    padding-bottom: 140px;
+    background-image:url('../../assets/2.png');
+    background-repeat: repeat;
+    background-attachment: fixed;
+    background-size:auto;
+    background-position: 80px 60px
 
 }
 
