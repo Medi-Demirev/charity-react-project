@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import ContactPage from './components/ContactPage/ContactPage';
+import Login from './components/LoginPage/LoginPage';
 
 import HeaderTopbar from './components/HeaderTopbar/HeaderTopbar';
 import Header from './components/Header/Header';
@@ -13,6 +14,7 @@ function App() {
       <Header/>
         <Routes>
            <Route path='/contact' element={<ContactPage/>}/>
+           <Route path='/login' element={<Login/>}/>
         
           </Routes>
 
