@@ -2,7 +2,7 @@ form>h2 {
     font-weight:bolder;
 }
 
-form {
+.loginForm {
     display: inline-block;
     text-align: center;
     position: relative;
