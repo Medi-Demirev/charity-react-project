@@ -9,6 +9,7 @@ import HomePage from './components/HomePage/HomePage';
 import HeaderTopbar from './components/HeaderTopbar/HeaderTopbar';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import EventPage from './components/Event/EventPage';
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
            <Route path='/*' element={<ErrorPage/>}/>;
            <Route path='/about' element={<About/>}/>;
            <Route path='/' element={<HomePage/>}/>;
+           <Route path='/event' element={<EventPage/>}/>;
            
         
           </Routes>
