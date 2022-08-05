@@ -17,8 +17,8 @@ const Causes = (props) => {
         <div className="container">
           <div className="col-lg-6 offset-lg-3">
             <div className="section-title section-title2 text-center">
-              <div className="first-header">
-                <span>HELP FOR CHILDREN IN NEED</span>
+              <div className="thumb-text">
+                <span>CAUSES</span>
               </div>
               <h2>RECENT CAUSES</h2>
               <p>
