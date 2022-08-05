@@ -1,5 +1,6 @@
 import Causes from "../Causes/Causes";
 import EventPage from "../Event/EventPage";
+import TeamPage from "../Team/TeamPage";
 
 const HomePage =() => {
     return(
@@ -7,6 +8,7 @@ const HomePage =() => {
          
             <Causes/>
             <EventPage/>
+            <TeamPage/>
           
         </>
     )
