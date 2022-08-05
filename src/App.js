@@ -11,6 +11,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import EventPage from './components/Event/EventPage';
 import TeamPage from './components/Team/TeamPage';
+import Causes from './components/Causes/Causes';
 import './App.css';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
            <Route path='/' element={<HomePage/>}/>;
            <Route path='/event' element={<EventPage/>}/>;
            <Route path='/volunteer' element={<TeamPage/>}/>;
+           <Route path='/causes' element={<Causes/>}/>;
            
         
           </Routes>
