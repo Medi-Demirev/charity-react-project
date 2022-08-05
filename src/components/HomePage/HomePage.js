@@ -7,10 +7,10 @@ const HomePage =() => {
     return(
         <>
          
-            <Causes/>;
-            <EventPage/>;
-            <ContactArea/>;
-            <TeamPage/>;
+            <Causes/>
+            <EventPage/>
+            <ContactArea/>
+            <TeamPage/>
           
         </>
     )
