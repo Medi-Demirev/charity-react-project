@@ -5,7 +5,7 @@ import Login from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import ErrorPage from './components/404/ErrorPage';
 import About from './components/About/About';
-
+import HomePage from './components/HomePage/HomePage';
 import HeaderTopbar from './components/HeaderTopbar/HeaderTopbar';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -19,9 +19,10 @@ function App() {
         <Routes>
            <Route path='/contact' element={<ContactPage/>}/>;
            <Route path='/login' element={<Login/>}/>;
-           <Route path='/register' element={<RegisterPage/>}/>
-           <Route path='/*' element={<ErrorPage/>}/>
-           <Route path='/about' element={<About/>}/>
+           <Route path='/register' element={<RegisterPage/>}/>;
+           <Route path='/*' element={<ErrorPage/>}/>;
+           <Route path='/about' element={<About/>}/>;
+           <Route path='/' element={<HomePage/>}/>;
            
         
           </Routes>
