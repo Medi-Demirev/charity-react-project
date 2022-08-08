@@ -1337,16 +1337,48 @@
             "ff436770-76c5-40e2-b231-77409eda7a61": {
                 "_ownerId": "35c62d76-8152-4626-8712-eeb96381bea8",
                 "title": "Ensure Education for every poor children",
-                "description": "Shiba Inu",
-                "Raised": "5800",
-                "Goal": "1000",
-                "Donar": "150",
-                "imageUrl": "../images/Shiba-Inu.png",
+                "subTitle": "A cause to raise funds for the poor and needy children of Ethiopia.",
+                "description": "This is a cause that raises funds for poor and needy children in Ethiopia. Cause is organized by the Kindness Foundation and will continue until the end of December 2022.",
+                "rised": "5800",
+                "goal": "10000",
+                "donars": "150",
+                "imageUrl": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+                "_createdOn": 1617194128618
+            },
+            "ff536770-76c5-40e2-b231-77409eda7a62": {
+                "_ownerId": "36c62d76-8152-4626-8713-eeb96381bea8",
+                "title": "Raising funds to build a school in Madagascar.",
+                "subTitle": "Cause to raise funds to build schools.",
+                "description": "The cause is organized by the Kindness Foundation and aims to raise funds to build a school in Madagascar.",
+                "rised": "5000",
+                "goal": "50000",
+                "donars": "50",
+                "imageUrl": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+                "_createdOn": 1617194128618
+            },
+            "ff536770-76c5-40e2-b231-77409eda7a584": {
+                "_ownerId": "36c62d76-8152-4626-8713-eeb96381bea8",
+                "title": "Raising funds to build a school in Madagascar.",
+                "subTitle": "Cause to raise funds to build schools.",
+                "description": "The cause is organized by the Kindness Foundation and aims to raise funds to build a school in Madagascar.",
+                "rised": "5001",
+                "goal": "50000",
+                "donars": "50",
+                "imageUrl": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
                 "_createdOn": 1617194128618
             },
         },
         donation: {},
-        volunteer: {},
+        volunteer: {
+            "fullName" : "Ivan Ivanov",
+            "country" : "Bulgaria",
+            "city" : "Sofia",
+            "adress" : "Vitosha street 23",
+            "phone" : "+359892345678",
+            "email" : "ivan@abv.bg",
+            "imageProfile" : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBCQkJ9H19piIgHPU_JNyHdFiRcDSGjbhDRCBkVHg&s",
+
+        },
         event: {}
     };
     var rules$1 = {
