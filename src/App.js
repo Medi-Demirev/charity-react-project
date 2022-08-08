@@ -17,6 +17,7 @@ import EventPage from './components/Event/EventPage';
 import TeamPage from './components/Team/TeamPage';
 import Causes from './components/Causes/Causes';
 import Logout from './components/Logout/Logout';
+import Catalog from './components/Catalog/Catalog';
 
 import './App.css';
 
@@ -47,6 +48,7 @@ function App() {
            <Route path='/volunteer' element={<TeamPage/>}/>;
            <Route path='/causes' element={<Causes/>}/>;
            <Route path='/logout' element={<Logout/>}/>
+           <Route path='/catalog' element={<Catalog/>}/>
          
         
           </Routes>
