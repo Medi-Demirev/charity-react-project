@@ -2,6 +2,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { AuthContext } from './contexts/AuthContext';
 import { useLocalStorage } from './hooks/useLocalStorage';
+import { CauseContextProvider } from './contexts/CauseContext';
 
 import ContactPage from './components/ContactPage/ContactPage';
 import Login from './components/LoginPage/LoginPage';
@@ -32,6 +33,7 @@ function App() {
   return (
     <AuthContext.Provider value={{user:auth, userLogin, userLogout}}>
     <div className="App">
+    <CauseContextProvider>
       <HeaderTopbar/>
       <Header/>
         <Routes>
@@ -50,7 +52,7 @@ function App() {
           </Routes>
 
       <Footer/>
-
+      </CauseContextProvider>
     </div>
     </AuthContext.Provider>
   );
