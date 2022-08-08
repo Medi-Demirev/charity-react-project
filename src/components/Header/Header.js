@@ -42,12 +42,12 @@ const Header = () => {
                     </li>
                     {user.accessToken
                     ? <li>
-                    <Link title="" to="/causes">
+                    <Link title="" to="/catalog">
                       Causes
                     </Link>
                     <ul>
                       <li>
-                        <Link title="" to="/causes">
+                        <Link title="" to="/catalog">
                           All Causes
                         </Link>
                       </li>
@@ -60,7 +60,7 @@ const Header = () => {
                   </li>
                   :
                   <li>
-                    <Link title="" to="/causes">
+                    <Link title="" to="/catalog">
                       Causes
                     </Link>
                     </li>}
