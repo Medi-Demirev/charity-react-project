@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import { AuthContext } from './contexts/AuthContext';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { CauseContextProvider } from './contexts/CauseContext';
+import { VolunteerContextProvider } from './contexts/VolunteerContext';
 
 import ContactPage from './components/ContactPage/ContactPage';
 import Login from './components/LoginPage/LoginPage';
@@ -18,6 +19,7 @@ import TeamPage from './components/Team/TeamPage';
 import Causes from './components/Causes/Causes';
 import Logout from './components/Logout/Logout';
 import Catalog from './components/Catalog/Catalog';
+import AllVolunteersPage from './components/Team/AllVolunteersPage/AllVolunteersPage';
 
 import './App.css';
 
@@ -35,26 +37,28 @@ function App() {
     <AuthContext.Provider value={{user:auth, userLogin, userLogout}}>
     <div className="App">
     <CauseContextProvider>
+    <VolunteerContextProvider>
       <HeaderTopbar/>
       <Header/>
-        <Routes>
-           <Route path='/contact' element={<ContactPage/>}/>;
-           <Route path='/login' element={<Login/>}/>;
-           <Route path='/register' element={<RegisterPage/>}/>;
-           <Route path='/*' element={<ErrorPage/>}/>;
-           <Route path='/about' element={<About/>}/>;
-           <Route path='/' element={<HomePage/>}/>;
-           <Route path='/event' element={<EventPage/>}/>;
-           <Route path='/volunteer' element={<TeamPage/>}/>;
-           <Route path='/causes' element={<Causes/>}/>;
-           <Route path='/logout' element={<Logout/>}/>
-           <Route path='/catalog' element={<Catalog/>}/>
+          <Routes>
+             <Route path='/contact' element={<ContactPage/>}/>;
+             <Route path='/login' element={<Login/>}/>;
+             <Route path='/register' element={<RegisterPage/>}/>;
+             <Route path='/*' element={<ErrorPage/>}/>;
+             <Route path='/about' element={<About/>}/>;
+             <Route path='/' element={<HomePage/>}/>;
+             <Route path='/event' element={<EventPage/>}/>;
+             <Route path='/all-volunteers' element={<AllVolunteersPage/>}/>;
+             <Route path='/causes' element={<Causes/>}/>;
+             <Route path='/logout' element={<Logout/>}/>
+             <Route path='/catalog' element={<Catalog/>}/>
          
         
           </Routes>
 
       <Footer/>
-      </CauseContextProvider>
+    </VolunteerContextProvider>
+    </CauseContextProvider>
     </div>
     </AuthContext.Provider>
   );
