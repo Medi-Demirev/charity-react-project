@@ -1,10 +1,14 @@
 import React from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 import Logo from '../../assets/Logo.png';
 import { Link } from 'react-router-dom';
 
 import './Header.css';
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+  
     const SubmitHandler = (e) =>{
         e.preventDefault()
      }
@@ -36,24 +40,33 @@ const Header = () => {
                         About
                       </Link>
                     </li>
-                    <li>
-                      <Link title="" to="/causes">
-                        Causes
-                      </Link>
-                      <ul>
-                        <li>
-                          <Link title="" to="/causes">
-                            All Causes
-                          </Link>
-                        </li>
-                        <li>
-                          <Link title="" to="/create-cause">
-                            Create Cause
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
-                    <li>
+                    {user.accessToken
+                    ? <li>
+                    <Link title="" to="/causes">
+                      Causes
+                    </Link>
+                    <ul>
+                      <li>
+                        <Link title="" to="/causes">
+                          All Causes
+                        </Link>
+                      </li>
+                      <li>
+                        <Link title="" to="/create-cause">
+                          Create Cause
+                        </Link>
+                      </li>
+                    </ul>
+                  </li>
+                  :
+                  <li>
+                    <Link title="" to="/causes">
+                      Causes
+                    </Link>
+                    </li>}
+                   {user.accessToken 
+                   ? 
+                   <li>
                       <Link title="" to="/event">
                         Event
                       </Link>
@@ -70,24 +83,37 @@ const Header = () => {
                         </li>
                       </ul>
                     </li>
+                    :
                     <li>
-                      <Link title="" to="/volunteer">
-                        Team
+                      <Link title="" to="/event">
+                        Event
                       </Link>
-                      <ul>
-                        <li>
-                          <Link title="" to="/volunteer">
-                            Volunteer
-                          </Link>
-                        </li>
-                        <li>
-                          <Link title="" to="/join-team">
-                            
-                            Join the team
-                          </Link>
-                        </li>
-                      </ul>
-                    </li>
+                    </li>}
+                   {user.accessToken 
+                   ?
+                   <li>
+                   <Link title="" to="/volunteer">
+                     Team
+                   </Link>
+                   <ul>
+                     <li>
+                       <Link title="" to="/volunteer">
+                         Volunteer
+                       </Link>
+                     </li>
+                     <li>
+                       <Link title="" to="/join-team">
+                         Join the team
+                       </Link>
+                     </li>
+                   </ul>
+                 </li>
+                 :
+                 <li>
+                   <Link title="" to="/volunteer">
+                     Team
+                   </Link>
+                   </li>}
                     <li>
                       <Link title="" to="/contact">
                         Contact
