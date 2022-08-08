@@ -26,7 +26,7 @@ const Causes = () => {
         </div>
         <div className="row">
        {causes.length > 0
-       ? causes.slice(0,3).map(x => <CauseItem key={x._id} cause ={x}/>)
+       ? causes.slice(-3).map(x => <CauseItem key={x._id} cause ={x}/>)
       :<h3 className='no-causes'>NO ACTIVE CASES YET!</h3>}
       </div> 
     </div>

@@ -148,7 +148,7 @@
     visibility: visible;
   }
   .case-btn .theme-btn{
-      padding: 11px 46px 13px 29px;
+      padding: 11px 46px 13px 22px;
   }
   .case-btn{
     position: absolute;
@@ -228,12 +228,11 @@
       margin-bottom: 50px;
   }
   }
-  .fa-angle-double-right {
-    padding-right: 1px;
-}
-.no-causes{
+
+  .no-causes{
     padding-bottom: 200px;
     font-style: normal;
     text-align: center;
     font-size: 45px;
   }
+  
