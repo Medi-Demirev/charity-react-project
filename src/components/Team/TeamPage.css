@@ -38,3 +38,9 @@
   .volunteer-item:hover .volunteer-img{
     transform: translateY(-20px);
   }
+  .no-vounteer{
+    padding-bottom: 200px;
+    font-style: normal;
+    text-align: center;
+    font-size: 45px;
+  }
