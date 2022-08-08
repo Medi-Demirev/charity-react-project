@@ -1,5 +1,8 @@
 
 import { Routes, Route } from 'react-router-dom';
+import { AuthContext } from './contexts/AuthContext';
+import { useLocalStorage } from './hooks/useLocalStorage';
+
 import ContactPage from './components/ContactPage/ContactPage';
 import Login from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
@@ -12,11 +15,22 @@ import Footer from './components/Footer/Footer';
 import EventPage from './components/Event/EventPage';
 import TeamPage from './components/Team/TeamPage';
 import Causes from './components/Causes/Causes';
+import Logout from './components/Logout/Logout';
 
 import './App.css';
 
 function App() {
+  const [auth, setAuth] = useLocalStorage('auth', {});
+
+  const userLogin = (authData) => {
+      setAuth(authData);
+  };
+
+  const userLogout = () => {
+    setAuth({});
+};
   return (
+    <AuthContext.Provider value={{user:auth, userLogin, userLogout}}>
     <div className="App">
       <HeaderTopbar/>
       <Header/>
@@ -30,6 +44,7 @@ function App() {
            <Route path='/event' element={<EventPage/>}/>;
            <Route path='/volunteer' element={<TeamPage/>}/>;
            <Route path='/causes' element={<Causes/>}/>;
+           <Route path='/logout' element={<Logout/>}/>
          
         
           </Routes>
@@ -37,6 +52,7 @@ function App() {
       <Footer/>
 
     </div>
+    </AuthContext.Provider>
   );
 }
 
