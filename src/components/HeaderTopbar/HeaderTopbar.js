@@ -1,9 +1,12 @@
-import React from 'react'
-import {Link}  from 'react-router-dom'
+import React from 'react';
+import { useContext } from 'react';
+import {Link}  from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
 
 import './HeaderTopbar.css'
 
 const HeaderTopbar = () => {
+    const { user } = useContext(AuthContext);
     return(	
         <div className="fixed-navbar">
         <div className="middle-header">
@@ -21,8 +24,18 @@ const HeaderTopbar = () => {
                         <div className="col col-md-6 col-sm-12 col-12">
                             <div className="contact-info">
                                 <ul>
-                                    <li><i className="fa fa-arrow-circle-down" aria-hidden="true" /><Link to="/login">Login</Link></li>
-                                    <li><i className="fa fa-user" aria-hidden="true" /><Link to="/register">Register</Link></li>
+                                    {user.accessToken 
+                                    ?
+                                    <> 
+                                        <li><i className="fa fa-user" aria-hidden="true" /><Link to="/profile">Profile</Link></li>
+                                        <li><i className="fa fa-arrow-circle-up" aria-hidden="true" /><Link to="/logout">Logout</Link></li>
+
+                                  </>  :
+                                   <> 
+                                        <li><i className="fa fa-arrow-circle-down" aria-hidden="true" /><Link to="/login">Login</Link></li>
+                                        <li><i className="fa fa-user" aria-hidden="true" /><Link to="/register">Register</Link></li>
+                                   </> }
+                                    
                                     
                                 </ul>
                             </div>
