@@ -231,3 +231,9 @@
   .fa-angle-double-right {
     padding-right: 1px;
 }
+.no-causes{
+    padding-bottom: 200px;
+    font-style: normal;
+    text-align: center;
+    font-size: 45px;
+  }
