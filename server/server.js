@@ -1377,11 +1377,11 @@
                 "donars": "50",
                 "imageUrl": "https://thumbs.dreamstime.com/b/white-stone-words-charity-smile-face-color-glitter-boke-background-117353127.jpg",
                 "_createdOn": 1617194128618
-            }
+            },
         },
         donation: {},
 
-        volunteer:{
+        volunteers:{
             "hfghf54567453456867":{
             "fullName" : "Ivan Ivanov",
             "country" : "Bulgaria",
@@ -1390,9 +1390,23 @@
             "phone" : "+359892345678",
             "email" : "ivan@abv.bg",
             "imageProfile" : "https://expertphotography.b-cdn.net/wp-content/uploads/2020/08/social-media-profile-photos-3.jpg",
-        }
         },
-        event: {}
+        },
+        events: {
+            "df536770-76c5-40e1-b231-77409eda7a5654":{
+            "title" : "Fundrising event that could change some poor children.",
+            "subTitle" : "t is long estblished fact that a reader will be distracted aliquip exea commodo consequat velit esse cillum fugiat.",
+            "description" :"Some description",
+            "country" : "Pakistan",
+            "city" : "Mudkarim",
+            "postcode" : "963",
+            "date" : "28",
+            "month" : "MART",
+            "fromHour" : "10:00 AM",
+            "toHour" : "13:00 PM",
+            "imageUrl" : "https://www.unhcr.org/hk/wp-content/uploads/sites/13/2016/10/4f87f5626.jpg",
+        },
+        }
     };
     var rules$1 = {
         users: {
