@@ -2,9 +2,8 @@ import { useContext,} from 'react';
 import { VolunteerContext } from '../../../contexts/VolunteerContext';
 import VolunteerProfile from '../VolunteerProfile/VolunteerProfile';
 
-import './AllVolunteersPage.css';
 
-const AllVolunteersPage = () => {
+const VolunteersCatalog = () => {
     const {volunteer} = useContext(VolunteerContext);
 
     return (
@@ -34,4 +33,4 @@ const AllVolunteersPage = () => {
     );
 };
 
-export default AllVolunteersPage;
+export default VolunteersCatalog;
