@@ -1,10 +1,9 @@
 import { useContext } from 'react';
-import { CauseContext } from '../../contexts/CauseContext';
-import CauseItem from '../Causes/CauseItem/CauseItem';
+import { CauseContext } from '../../../contexts/CauseContext';
+import CauseItem from '../CauseItem/CauseItem';
 
-import './Catalog.css'
 
-const Catalog = () => {
+const CausesCatalog = () => {
  const {causes} = useContext(CauseContext)
  
     return(
@@ -34,4 +33,4 @@ const Catalog = () => {
     );
 };
 
-export default Catalog;
+export default CausesCatalog;
