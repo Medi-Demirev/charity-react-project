@@ -16,9 +16,9 @@ import HeaderTopbar from './components/HeaderTopbar/HeaderTopbar';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import EventCatalog from './components/Event/EventsCatalog/EventsCatalog';
-import Causes from './components/Causes/Causes';
+
 import Logout from './components/Logout/Logout';
-import Catalog from './components/Catalog/Catalog';
+import CausesCatalog from './components/Causes/CausesCatalog/CausesCatalog';
 import VolunteersCatalog from './components/Team/VolunteersCatalog/VolunteersCatalog';
 
 import './App.css';
@@ -48,8 +48,7 @@ function App() {
              <Route path='/contact' element={<ContactPage/>}/>;
              <Route path='/about' element={<About/>}/>;
              <Route path='/' element={<HomePage/>}/>;
-             <Route path='/causes' element={<Causes/>}/>;
-             <Route path='/catalog' element={<Catalog/>}/>
+             <Route path='/all-causes' element={<CausesCatalog/>}/>;
              <Route path='/all-events' element={<EventCatalog/>}/>;
              <Route path='/all-volunteers' element={<VolunteersCatalog/>}/>;
              <Route path='/*' element={<ErrorPage/>}/>;
