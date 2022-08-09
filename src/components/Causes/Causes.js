@@ -1,7 +1,7 @@
 
 import { useContext } from 'react';
 import { CauseContext } from '../../contexts/CauseContext';
-import CauseItem from '../CauseItem/CauseItem';
+import CauseItem from './CauseItem/CauseItem';
 
 import './Causes.css'
 
@@ -27,7 +27,7 @@ const Causes = () => {
         <div className="row">
        {causes.length > 0
        ? causes.slice(-3).map(x => <CauseItem key={x._id} cause ={x}/>)
-      :<h3 className='no-causes'>NO ACTIVE CASES YET!</h3>}
+      :<h3 className='no-causes'>NO ACTIVE CAUSES YET!</h3>}
       </div> 
     </div>
     </div>
