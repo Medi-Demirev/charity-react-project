@@ -25,7 +25,7 @@ const AllVolunteersPage = () => {
                     <div className="row">
                     {volunteer.length > 0
                       ? volunteer.map(x => <VolunteerProfile key={x._id} volunteer ={x}/>)
-                     :<h3 className='no-vounteer'>NO ACTIVE CASES YET!</h3>}
+                     :<h3 className='no-vounteer'>NO ACTIVE VOLUNTEERS YET!</h3>}
                         
                     </div>
                 </div>
