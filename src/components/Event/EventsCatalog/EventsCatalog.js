@@ -1,15 +1,12 @@
 import { useContext } from 'react';
-import { EventContext } from '../../contexts/EventContext';
-import EventItem from './EventItem/EventItem';
+import { EventContext } from '../../../contexts/EventContext';
+import EventItem from '../EventItem/EventItem';
 
 
-import event4 from '../../images/event/1.png';
-import event5 from '../../images/event/2.png';
+import event4 from '../../../images/event/1.png';
+import event5 from '../../../images/event/2.png';
 
-
-import './EventPage.css';
-
-const EventPage = () => {
+const EventCatalog = () => {
     const {events} = useContext(EventContext);
 
     console.log(events);
@@ -30,8 +27,8 @@ const EventPage = () => {
                 <div className="row">
                     <div className="col-12">
                     {events.length > 0
-                     ? events.slice(0,2).map(x => <EventItem key={x._id} event ={x}/>)
-                     :<h3 className='no-events'>NO ACTIVE EVENTS YET!</h3>} 
+                     ? events.map(x => <EventItem key={x._id} event ={x}/>)
+                     :<h3 className='no-events'>NO ACTIVE EVENTS YET!</h3>}
                        
                     </div>
                 </div>
@@ -39,7 +36,7 @@ const EventPage = () => {
             <div className="shape1"><img src={event4} alt="" /></div>
             <div className="shape2"><img src={event5} alt="" /></div>
         </div>
-    )
-}
+    );
+};
 
-export default EventPage;
+export default EventCatalog;
