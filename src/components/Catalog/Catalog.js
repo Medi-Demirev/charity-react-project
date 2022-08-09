@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { CauseContext } from '../../contexts/CauseContext';
-import CauseItem from '../CauseItem/CauseItem';
+import CauseItem from '../Causes/CauseItem/CauseItem';
 
 import './Catalog.css'
 
