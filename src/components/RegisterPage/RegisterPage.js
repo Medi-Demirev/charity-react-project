@@ -27,25 +27,36 @@ const RegisterPage = () => {
 
     const formData = new FormData(e.target);
 
-    const fullName = formData.get('fullName');
+    const name = formData.get('name');
     const country = formData.get('country');
     const city = formData.get('city');
     const adress = formData.get('adress');
     const phone = formData.get('phone');
-    const nameOrganization = formData.get('nameOrganization');
+    const typeAccount = formData.get('option')
     const email = formData.get('email');
     const password = formData.get('password');
     const repeatPassword = formData.get('repeatPassword');
 
-    console.log(fullName);
+    const registerData = {
+      name:name,
+      country,
+      city,
+      adress,
+      phone,
+      typeAccount,
+      email,
+      password,
+      repeatPassword
+    }
 
     if (password !== repeatPassword) {
       navigate('404')
   }
 
-  authService.register(email, password)
+  authService.register(email, password, country,name,city, adress,phone,typeAccount)
   .then(authData => {
       userLogin(authData);
+      console.log(authData);
       navigate('/');
   });
 
@@ -61,21 +72,22 @@ const RegisterPage = () => {
         {" "}
         Type of account:
         <select name='option' onChange={handleChange}>
+        <option></option>
           <option>NGO</option>
           <option>Personal</option>
         </select>
       </label>
     </div>
-  {option === 'Personal'  ?
+  
  
-      <>
+      
         <div className="on-dark">
-          <label htmlFor="fullName">Full Name:</label>
+          <label htmlFor="name">Full Name/ Organization Name:</label>
           <input
-            id="firstName"
-            name="firstName"
+            id="name"
+            name="name"
             type="text"
-            placeholder="Ivan Ivanov"
+            placeholder="Ivan Ivanov / Ability Foundation"
             defaultValue=""
           />
         </div> 
@@ -151,92 +163,9 @@ const RegisterPage = () => {
             defaultValue=""
           />
         </div> 
-        </> :
-      <>
-       
-        <div className="on-dark">
-          <label htmlFor="nameOrganization">Name of Organization:</label>
-          <input
-            id="nameOrganization"
-            name="nameOrganization"
-            type="text"
-            placeholder="Ability Foundation"
-            defaultValue=""
-          />
-        </div>
-        <div className="on-dark">
-          <label htmlFor="country">Country:</label>
-          <input
-            id="country"
-            name="country"
-            type="text"
-            placeholder="Bulgaria"
-            defaultValue=""
-          />
-        </div>
-        <div className="on-dark">
-          <label htmlFor="city">City:</label>
-          <input
-            id="city"
-            name="city"
-            type="text"
-            placeholder="Sofia"
-            defaultValue=""
-          />
-        </div>
-        <div className="on-dark">
-          <label htmlFor="adress">Adress:</label>
-          <input
-            id="adress"
-            name="adress"
-            type="text"
-            placeholder="Liberation street 45"
-            defaultValue=""
-          />
-        </div>
-        <div className="on-dark">
-          <label htmlFor="phone">Phone:</label>
-          <input
-            id="phone"
-            name="phone"
-            type="text"
-            placeholder="+359891234567"
-            defaultValue=""
-          />
-        </div>
-        <div className="on-dark">
-          <label htmlFor="email">Email:</label>
-          <input
-            id="email"
-            name="email"
-            type="text"
-            placeholder="ability@gmail.com"
-            defaultValue=""
-          />
-        </div>
         
-        <div className="on-dark">
-          <label htmlFor="password">Password:</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            placeholder="********"
-            defaultValue=""
-          />
-        </div>
-        <div className="on-dark">
-          <label htmlFor="repeatPassword">Repeat Password:</label>
-          <input
-            id="repeatPassword"
-            name="repeatPassword"
-            type="password"
-            placeholder="********"
-            defaultValue=""
-          />
-        </div>
-      </>
-}
+      
+
         
         <button className="btn" type="submit">
           Register
