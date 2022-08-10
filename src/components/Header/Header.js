@@ -1,6 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
+
 import Logo from '../../assets/Logo.png';
 import { Link } from 'react-router-dom';
 
@@ -8,11 +9,9 @@ import './Header.css';
 
 const Header = () => {
   const { user } = useContext(AuthContext);
-  
-    const SubmitHandler = (e) =>{
-        e.preventDefault()
-     }
-
+ 
+ 
+console.log(user.typeAccount);
     return(	
         <div className="header-style-3">
         <div className="container">
@@ -40,7 +39,7 @@ const Header = () => {
                         About
                       </Link>
                     </li>
-                    {user.accessToken
+                    {user.accessToken && user.typeAccount === 'NGO'
                     ? <li>
                     <Link title="" to="/all-causes">
                       Causes
@@ -64,11 +63,11 @@ const Header = () => {
                       Causes
                     </Link>
                     </li>}
-                   {user.accessToken 
+                   {user.accessToken && user.typeAccount === 'NGO'
                    ? 
                    <li>
                       <Link title="" to="/all-events">
-                        Event
+                        Events
                       </Link>
                       <ul>
                         <li>
@@ -86,11 +85,12 @@ const Header = () => {
                     :
                     <li>
                       <Link title="" to="/all-events">
-                        Event
+                        Events
                       </Link>
                     </li>}
-                   {user.accessToken 
+                   {user.accessToken && user.typeAccount === 'Personal' 
                    ?
+                   
                    <li>
                    <Link title="" to="/all-volunteers">
                      Team
@@ -101,6 +101,7 @@ const Header = () => {
                        Our Volunteers
                        </Link>
                      </li>
+                     
                      <li>
                        <Link title="" to="/join-team">
                          Join the team
