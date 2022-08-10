@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { EventContext } from "../../../contexts/EventContext";
+import {Link} from 'react-router-dom'
 
 import "./EventDetails.css";
 
@@ -37,9 +38,15 @@ const EventDetails = () => {
                         </div>
 
                         <div className="submit-area sub-btn">
-                          <a href="/donate" className="theme-btn submit-btn">
-                            Donate Now
-                          </a>
+                          <Link to ="/donate" className="theme-btn submit-btn">
+                            Donat Now
+                          </Link>
+                          <Link to ="/donate" className="theme-btn submit-btn">
+                            Edit
+                          </Link>
+                          <Link to ="/donate" className="theme-btn submit-btn">
+                            Delete
+                          </Link>
                         </div>
                       </div>
                     </div>
