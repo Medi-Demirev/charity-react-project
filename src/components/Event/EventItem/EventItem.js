@@ -2,9 +2,7 @@ import { Link } from "react-router-dom";
 
 
 const EventItem = ({event}) => {
-    const ClickHandler = (e) =>{
-        e.preventDefault()
-      }
+    
     return (
         <div className="event-item">
                 <div className="event-img">
@@ -22,7 +20,7 @@ const EventItem = ({event}) => {
                             <li><i className="ti-location-pin"></i> {event.fromHour} - {event.toHour}</li>
                             <li><i className="ti-location-pin"></i> {event.postcode}, {event.city}, {event.country}.</li>
                         </ul>
-                        <h2><Link onClick={ClickHandler} to="/event">{event.title}</Link></h2>
+                        <h2><Link to={`event/${event._id}`}>{event.title}</Link></h2>
                         <p>{event.subTitle}</p>
                     </div>
                 </div>
