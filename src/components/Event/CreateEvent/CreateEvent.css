@@ -1,0 +1,48 @@
+
+.createForms{
+    display: inline-block;
+    display: inline-block; width:49%;
+
+    text-align: center;
+    position: relative;
+    width: 680px;
+    height: 2110px;
+    border-radius: 20px;
+    padding: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    box-sizing: border-box;
+    background: #fb907091;
+    box-shadow: 14px 14px 30px #464a4e, -14px -14px 30px #464a4e;
+    justify-content: center;
+}
+
+#createPage {
+    display: grid;
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    justify-items: center;
+
+}
+.benefit{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.createForm div {
+    width: 600px;
+    display: block;
+}
+
+.createForm h2 {
+    color: black;
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 0px;
+}
+
+.createForm .btn {
+    width: 200px;
+    margin-left: 55px;
+}
