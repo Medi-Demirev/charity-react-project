@@ -15,7 +15,7 @@ const EventDetails = () => {
     .then(result => {
       setCurrentEvent(result)
     })
-  },[]);
+  },[])
   
   return (
     <div className="wpo-event-details-area section-padding">
