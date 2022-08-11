@@ -1,7 +1,6 @@
 
 import { Routes, Route } from 'react-router-dom';
-import { AuthContext } from './contexts/AuthContext';
-import { useLocalStorage } from './hooks/useLocalStorage';
+
 import { CauseContextProvider } from './contexts/CauseContext';
 import { VolunteerContextProvider } from './contexts/VolunteerContext';
 import { EventContextProvider } from './contexts/EventContext';
@@ -23,6 +22,10 @@ import Logout from './components/Logout/Logout';
 import CausesCatalog from './components/Causes/CausesCatalog/CausesCatalog';
 import CauseDetails from './components/Causes/CauseDetails/CauseDetails';
 import VolunteersCatalog from './components/Team/VolunteersCatalog/VolunteersCatalog';
+import CreateEvent from './components/Event/CreateEvent/CreateEvent';
+import EditEvent from './components/Event/EditEvent/EditEvent';
+import CreateCause from './components/Causes/CreateCause/CreateCause';
+import EditCause from './components/Causes/EditCause/EditCause';
 
 
 import './App.css';
@@ -48,10 +51,14 @@ function App() {
              <Route path='/all-causes' element={<CausesCatalog/>}/>
              <Route path='/all-events' element={<EventCatalog/>}/>
              <Route path='/all-volunteers' element={<VolunteersCatalog/>}/>
-             <Route path='/event/:id' element={<EventDetails />}/>
-             <Route path='/all-events/event/:id' element={<EventDetails />}/>
-             <Route path='/cause/:id' element={<CauseDetails />}/>
-             <Route path='/all-causes/cause/:id' element={<CauseDetails />}/>
+             <Route path='/event/:eventId' element={<EventDetails />}/>
+             <Route path='/create-event' element={<CreateEvent/>}/>
+             <Route path='/all-events/:eventId/edit' element={<EditEvent/>}/>
+             <Route path='/all-events/event/:eventId' element={<EventDetails />}/>
+             <Route path='/cause/:causeId' element={<CauseDetails />}/>
+             <Route path='/all-causes/cause/:causeId' element={<CauseDetails />}/>
+             <Route path='/create-cause' element={<CreateCause/>}/>
+             <Route path='/all-causes/cause/:causeId/edit' element={<EditCause/>}/>
              <Route path='/*' element={<ErrorPage/>}/>;
          
         
