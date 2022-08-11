@@ -1,30 +1,30 @@
 
 import { Link } from "react-router-dom";
 
-const EventItem = ({event}) => {
-  console.log(event);
+const EventsItem = ({events}) => {
+  console.log(events);
     return (   
-        <div className="event-item">
-                <div className="event-img">
-                    <img src={event.imageUrl} alt="" />
+        <div className="events-item">
+                <div className="events-img">
+                    <img src={events.imageUrl} alt="" />
                 </div>
-                <div className="event-text">
-                    <div className="event-left">
-                        <div className="event-l-text">
-                            <span>{event.month}</span>
-                            <h4>{event.date}</h4>
+                <div className="events-text">
+                    <div className="events-left">
+                        <div className="events-l-text">
+                            <span>{events.month}</span>
+                            <h4>{events.date}</h4>
                         </div>
                     </div>
-                    <div className="event-right">
+                    <div className="events-right">
                         <ul>
-                            <li><i className="ti-location-pin"></i> {event.fromHour} - {event.toHour}</li>
-                            <li><i className="ti-location-pin"></i> {event.postcode}, {event.city}, {event.country}.</li>
+                            <li><i className="ti-location-pin"></i> {events.fromHour} - {events.toHour}</li>
+                            <li><i className="ti-location-pin"></i> {events.postcode}, {events.city}, {events.country}.</li>
                         </ul>
-                        <h2><Link to={`all-events/${event._id}`}>{event.title}</Link></h2>
-                        <p>{event.subTitle}</p>
+                        <h2><Link to={`all-eventss/${events._id}`}>{events.title}</Link></h2>
+                        <p>{events.subTitle}</p>
                     </div>
                 </div>
             </div>
     );
 };
-export default EventItem;
+export default EventsItem;

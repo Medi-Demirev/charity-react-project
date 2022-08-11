@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 
-
 const EventItem = ({event}) => {
-    
+
     return (
         <div className="event-item">
                 <div className="event-img">
