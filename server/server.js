@@ -1322,11 +1322,24 @@
         users: {
             "35c62d76-8152-4626-8712-eeb96381bea8": {
                 email: "peter@abv.bg",
-                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                name:"Peter Petrov",
+                country:"Bulgaria",
+                city:"Plovdiv",
+                adress:"Syedinenie 1",
+                phone:"+359894563217",
+                typeAccount:"Personal",
+                
             },
             "847ec027-f659-4086-8032-5173e2f9c93a": {
                 email: "john@abv.bg",
-                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1"
+                hashedPassword: "83313014ed3e2391aa1332615d2f053cf5c1bfe05ca1cbcb5582443822df6eb1",
+                name:"Jonh Meet",
+                country:"UK",
+                city:"London",
+                adress:"Livingston street 36",
+                phone:"+4498945632319",
+                typeAccount:"Personal",
             }
         },
         sessions: {
@@ -1339,46 +1352,22 @@
                 "title": "Ensure Education for every poor children",
                 "subTitle": "A cause to raise funds for the poor and needy children of Ethiopia.",
                 "description": "This is a cause that raises funds for poor and needy children in Ethiopia. Cause is organized by the Kindness Foundation and will continue until the end of December 2022.",
-                "rised": "5800",
+                "causeMission" :"These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure.",
+                "benefit1": "The wise man therefore always holds in these matters.",
+                "benefit2": "In a free hour, when our power of choice and when nothing.",
+                "benefit3": "Else he endures pains to avoid worse pains.",
+                "benefit4": "We denounce with righteous indignation and dislike men.",
+                "benefit5": "Which is the same as saying through.",
+                "raised": "5800",
                 "goal": "10000",
-                "donars": "150",
+                "donors": "150",
                 "imageUrl": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
                 "_createdOn": 1617194128618
             },
-            "ff536770-76c5-40e2-b231-77409eda7a62": {
-                "_ownerId": "36c62d76-8152-4626-8713-eeb96381bea8",
-                "title": "Raising funds to build a school in Madagascar.",
-                "subTitle": "Cause to raise funds to build schools.",
-                "description": "The cause is organized by the Kindness Foundation and aims to raise funds to build a school in Madagascar.",
-                "rised": "5000",
-                "goal": "50000",
-                "donars": "50",
-                "imageUrl": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-                "_createdOn": 1617194128618
-            },
-            "ff536770-76c5-40e2-b231-77409eda7a584": {
-                "_ownerId": "36c62d76-8152-4626-8713-eeb96381bea8",
-                "title": "Raising funds to build a school in Madagascar.",
-                "subTitle": "Cause to raise funds to build schools.",
-                "description": "The cause is organized by the Kindness Foundation and aims to raise funds to build a school in Madagascar.",
-                "rised": "5001",
-                "goal": "50000",
-                "donars": "50",
-                "imageUrl": "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-                "_createdOn": 1617194128618
-            },
-            "ff536770-76c5-40e2-b231-77409eda7a5554": {
-                "_ownerId": "36c62d76-8152-4626-8713-eeb96381bej9",
-                "title": "Raising funds to build a school in Madagascar00.",
-                "subTitle": "Cause to raise funds to build schools.",
-                "description": "The cause is organized by the Kindness Foundation and aims to raise funds to build a school in Madagascar.",
-                "rised": "2001",
-                "goal": "20000",
-                "donars": "50",
-                "imageUrl": "https://thumbs.dreamstime.com/b/white-stone-words-charity-smile-face-color-glitter-boke-background-117353127.jpg",
-                "_createdOn": 1617194128618
-            },
+          
         },
+       
+       
         donation: {},
 
         volunteers:{
@@ -1396,7 +1385,13 @@
             "df536770-76c5-40e1-b231-77409eda7a5654":{
             "title" : "Fundrising event that could change some poor children.",
             "subTitle" : "t is long estblished fact that a reader will be distracted aliquip exea commodo consequat velit esse cillum fugiat.",
-            "description" :"Some description",
+            "eventMission" :"These cases are perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when nothing prevents our being able to do what we like best, every pleasure.",
+            "description" :"Some description.",
+            "benefit1":"Save The Children’s Role In Fight Against Malnutrition Hailed.",
+            "benefit2":"Charity Can Help Make Smile Of Poor Peopl.e",
+            "benefit3":"Else he endures pains to avoid worse pains.",
+            "benefit4":"We denounce with righteous indignation and dislike men.",
+            "benefit5":"Financial Help For Poor Families.",
             "country" : "Pakistan",
             "city" : "Mudkarim",
             "postcode" : "963",
