@@ -1,98 +1,105 @@
-import { useContext } from 'react';
-import { CauseContext } from '../../../contexts/CauseContext';
-import { Link } from "react-router-dom";
+import { useState,useEffect } from 'react';
+
+import { Link, useParams } from "react-router-dom";
+import  * as causeService from '../../../services/causeService';
+
 
 import "./CauseDetails.css";
 
 const CauseDetails = () => {
-    const {causes} = useContext(CauseContext);
-    console.log(causes);
+  const {causetId} = useParams();
+  const [currentCause, setCurrentCause] = useState({});
+
+  useEffect(() => {
+    causeService.getOne(causetId)
+    .then(result => {
+      setCurrentCause(result)
+    })
+  },[]);
 
   return (
-      <div className="tp-case-details-area section-padding">
-      {causes.map(object=> 
-      <div key={object._id} className="container">
-        <div className="row">
-          <div className="col col-lg-8">
-            <div  className="tp-case-details-wrap">
-              <div className="tp-case-details-text">
-                <div id="Description">
-                  <div className="tp-case-details-img">
-                    <img src={object.imageUrl} alt="" />
-                  </div>
-                  <div className="tp-case-content">
-                    <div className="tp-case-text-top">
-                      <h2>{object.title}</h2>
-                      <div className="progress-section">
-                        <div className="process">
-                          <div className="progress">
-                            <div className="progress-bar">
-                              <div className="progress-value">
-                                <span>65.5</span>%
-                              </div>
+    <div className="tp-case-details-area section-padding">
+    
+    <div key={currentCause._id} className="container">
+      <div className="row">
+        <div className="col col-lg-8">
+          <div  className="tp-case-details-wrap">
+            <div className="tp-case-details-text">
+              <div id="Description">
+                <div className="tp-case-details-img">
+                  <img src={currentCause.imageUrl} alt="" />
+                </div>
+                <div className="tp-case-content">
+                  <div className="tp-case-text-top">
+                    <h2>{currentCause.title}</h2>
+                    <div className="progress-section">
+                      <div className="process">
+                        <div className="progress">
+                          <div className="progress-bar">
+                            <div className="progress-value">
+                              <span>65.5</span>%
                             </div>
                           </div>
                         </div>
                       </div>
+                    </div>
+                    <ul>
+                      <li>
+                        <span>Raised:</span> {currentCause.raised}
+                      </li>
+                      <li>
+                        <span>Goal:</span> {currentCause.goal}
+                      </li>
+                      <li>
+                        <span>Donar:</span> {currentCause.donors}
+                      </li>
+                    </ul>
+                    <div className="case-b-text">
+                      <p>
+                        {currentCause.description}
+                      </p>
+                    </div>
+                    <div className="case-bb-text">
+                    <h3>Cause Mission</h3>
+                          <p>{currentCause.causeMission}</p>
+                      <h3>Benefits of realizing the cause</h3>
                       <ul>
                         <li>
-                          <span>Raised:</span> {object.rised}
+                        {currentCause.benefit1}
                         </li>
                         <li>
-                          <span>Goal:</span> {object.goal}
+                        {currentCause.benefit2}
                         </li>
+                        <li>{currentCause.benefit3}</li>
                         <li>
-                          <span>Donar:</span> {object.donars}
+                        {currentCause.benefit4}
                         </li>
+                        <li>{currentCause.benefit5}</li>
                       </ul>
-                      <div className="case-b-text">
-                        <p>
-                          {object.description}
-                        </p>
-                      </div>
-                      <div className="case-bb-text">
-                        <h3>Benefits of realizing the cause</h3>
-                       
-                        <ul>
-                          <li>
-                            The wise man therefore always holds in these
-                            matters.
-                          </li>
-                          <li>
-                            In a free hour, when our power of choice and when
-                            nothing.
-                          </li>
-                          <li>Else he endures pains to avoid worse pains.</li>
-                          <li>
-                            We denounce with righteous indignation and dislike
-                            men.{" "}
-                          </li>
-                          <li>Which is the same as saying through.</li>
-                        </ul>
-                      </div>
-                      <div className="submit-area sub-btn">
-                        <Link to="/donate" className="theme-btn submit-btn">
-                          Donate Now
-                        </Link>
-                        <Link to="/edit" className="theme-btn submit-btn">
-                          Edit
-                        </Link>
-                        <Link to="/edit" className="theme-btn submit-btn">
-                          Delete
-                        </Link>
-                      </div>
+                    </div>
+                    <div className="submit-area sub-btn">
+                      <Link to="/donate" className="theme-btn submit-btn">
+                        Donate Now
+                      </Link>
+                      <Link to="/edit" className="theme-btn submit-btn">
+                        Edit
+                      </Link>
+                      <Link to="/edit" className="theme-btn submit-btn">
+                        Delete
+                      </Link>
                     </div>
                   </div>
                 </div>
-                
               </div>
+              
             </div>
           </div>
-        
         </div>
+      
       </div>
-        )}
     </div>
+      
+  </div>
   );
 };
 
