@@ -1,39 +1,50 @@
-import { useContext } from "react";
-import { EventContext } from "../../../contexts/EventContext";
-import {Link} from 'react-router-dom'
+import {useEffect, useState } from "react";
+
+import {Link, useParams} from 'react-router-dom';
+import  * as eventService from '../../../services/eventService';
 
 import "./EventDetails.css";
 
 const EventDetails = () => {
-  const { events } = useContext(EventContext);
 
+  const {eventId} = useParams();
+  const [currentEvent, setCurrentEvent] = useState({});
+
+  useEffect(() => {
+    eventService.getOne(eventId)
+    .then(result => {
+      setCurrentEvent(result)
+    })
+  },[]);
+  
   return (
     <div className="wpo-event-details-area section-padding">
       <div className="container">
         <div className="row">
           <div className="col col-lg-8">
             <div className="tp-case-details-wrap">
-              {events.map((object) => (
-                <div key={object._id} className="tp-case-details-text">
+              
+                <div key={currentEvent._id} className="tp-case-details-text">
                   <div id="Description">
                     <div className="tp-case-details-img">
-                      <img src={object.imageUrl} alt="" />
+                      <img src={currentEvent.imageUrl} alt="" />
                     </div>
                     <div className="tp-case-content">
                       <div className="tp-case-text-top">
-                        <h2>{object.title}</h2>
+                        <h2>{currentEvent.title}</h2>
                         <div className="case-b-text">
-                          <p>{object.description}</p>
+                          <p>{currentEvent.description}</p>
                         </div>
                         <div className="case-bb-text">
                           <h3>Event Mission</h3>
-                          <p>{object.eventMission}</p>
+                          <p>{currentEvent.eventMission}</p>
+                          <h3>Benefits of realizing the event</h3>
                           <ul>
-                            <li> {object.benefit1} </li>
-                            <li>{object.benefit2}</li>
-                            <li>{object.benefit3}</li>
-                            <li>{object.benefit4}</li>
-                            <li>{object.benefit5}</li>
+                            <li> {currentEvent.benefit1} </li>
+                            <li>{currentEvent.benefit2}</li>
+                            <li>{currentEvent.benefit3}</li>
+                            <li>{currentEvent.benefit4}</li>
+                            <li>{currentEvent.benefit5}</li>
                           </ul>
                         </div>
 
@@ -41,7 +52,7 @@ const EventDetails = () => {
                           <Link to ="/donate" className="theme-btn submit-btn">
                             Donat Now
                           </Link>
-                          <Link to ="/donate" className="theme-btn submit-btn">
+                          <Link to ={`/all-events/${currentEvent._id}/edit`} className="theme-btn submit-btn">
                             Edit
                           </Link>
                           <Link to ="/donate" className="theme-btn submit-btn">
@@ -52,7 +63,7 @@ const EventDetails = () => {
                     </div>
                   </div>
                 </div>
-              ))}
+              
             </div>
           </div>
         </div>
