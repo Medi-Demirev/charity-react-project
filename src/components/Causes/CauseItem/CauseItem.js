@@ -30,7 +30,7 @@ const CauseItem = ({ cause }) => {
                         <Link  to={`cause/${cause._id}`}>{cause.title}</Link>
                     </h3>
                     <p>
-                        {cause.subtitle}
+                        {cause.subTitle}
                     </p>
                 </div>
             </div>
