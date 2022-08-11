@@ -7,11 +7,11 @@ import  * as causeService from '../../../services/causeService';
 import "./CauseDetails.css";
 
 const CauseDetails = () => {
-  const {causetId} = useParams();
+  const {causeId} = useParams();
   const [currentCause, setCurrentCause] = useState({});
 
   useEffect(() => {
-    causeService.getOne(causetId)
+    causeService.getOne(causeId)
     .then(result => {
       setCurrentCause(result)
     })
@@ -81,7 +81,7 @@ const CauseDetails = () => {
                       <Link to="/donate" className="theme-btn submit-btn">
                         Donate Now
                       </Link>
-                      <Link to="/edit" className="theme-btn submit-btn">
+                      <Link to={`/all-causes/cause/${currentCause._id}/edit`} className="theme-btn submit-btn">
                         Edit
                       </Link>
                       <Link to="/edit" className="theme-btn submit-btn">
