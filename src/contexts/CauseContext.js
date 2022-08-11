@@ -2,15 +2,23 @@ import { createContext} from "react";
 import { useState, useEffect } from "react";
 import * as causeService from '../services/causeService';
 import Causes from "../components/Causes/Causes";
-
+import { useNavigate } from "react-router-dom";
 export const CauseContext = createContext();
 
 export const CauseContextProvider = ({ children }) => {
-
+    const navigate = useNavigate();
     const [causes, setCauses] = useState([]);
-    causes.map(object => <Causes /> )
-   
-    
+
+  
+    const causeAdd = (causeData) => {
+      setCauses(state =>[
+        ...state,
+        causeData
+        
+      ])
+      
+      navigate('/all-causes')
+    }
     useEffect(()=>{
       causeService.getAll()
         .then(result=>{
@@ -24,8 +32,10 @@ export const CauseContextProvider = ({ children }) => {
            })
     },[])
 
+   
+
     return (
-        <CauseContext.Provider value={{ causes, setCauses }}>
+        <CauseContext.Provider value={{ causes, setCauses, causeAdd }}>
             {children}
         </CauseContext.Provider>
     )
