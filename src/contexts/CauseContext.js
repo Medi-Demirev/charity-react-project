@@ -18,24 +18,26 @@ export const CauseContextProvider = ({ children }) => {
       ])
       
       navigate('/all-causes')
-    }
+    };
+    const causeEdit = (causeId, causeData) =>{
+      setCauses(state => state.map(x=> x._id === causeId ? causeData :x))
+    };
+
     useEffect(()=>{
       causeService.getAll()
         .then(result=>{
           setCauses(result)
-          console.log(result);
-         
-        
+       
         })
         .catch(error => {
-           console.log(error);
+           //console.log(error);
            })
-    },[])
+    },[]);
 
    
 
     return (
-        <CauseContext.Provider value={{ causes, setCauses, causeAdd }}>
+        <CauseContext.Provider value={{ causes, setCauses, causeAdd, causeEdit }}>
             {children}
         </CauseContext.Provider>
     )
