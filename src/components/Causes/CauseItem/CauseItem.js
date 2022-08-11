@@ -3,6 +3,7 @@ const CauseItem = ({ cause }) => {
     console.log(cause._id);
 
     return (
+        
         <div className="col-lg-4 col-md-6 col-12" >
             <div className="cause-item">
                 <div className="cause-top">
@@ -22,7 +23,7 @@ const CauseItem = ({ cause }) => {
                             <Link to="/">GOAL: {cause.goal}</Link>
                         </li >
                         <li>
-                            <Link  to="/">RISED:  {cause.rised}</Link>
+                            <Link  to="/">RISED:  {cause.raised}</Link>
                         </li>
                     </ul>
                     <h3>
@@ -34,6 +35,7 @@ const CauseItem = ({ cause }) => {
                 </div>
             </div>
         </div>
+        
 
     );
 };
