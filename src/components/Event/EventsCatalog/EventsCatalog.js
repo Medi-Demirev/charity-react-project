@@ -9,7 +9,7 @@ import event5 from '../../../images/event/2.png';
 const EventCatalog = () => {
     const {events} = useContext(EventContext);
 
-    console.log(events);
+  
     return(
         <div className="event-area section-padding">
             <div className="container">
