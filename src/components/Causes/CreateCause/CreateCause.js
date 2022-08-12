@@ -8,20 +8,7 @@ import logo from '../../../assets/Logo.png';
 
 const CreateCause = () => {
     const { causeAdd } = useContext(CauseContext);
-    const [inputs, setInputs] = useState('');
-
-    const changeHandler = (e) => {
-        setInputs(state =>({
-            ...state,
-        [e.target.name]: e.target.value
-        }))
-    };
-    
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-
-        const causeData = {
+    const [inputs, setInputs] = useState({
         title: "",
         subTitle:  "",
         description: "",
@@ -35,6 +22,33 @@ const CreateCause = () => {
         benefit3: "",
         benefit4: "",
         benefit5: "",
+    });
+
+    const changeHandler = (e) => {
+        setInputs(state =>({
+            ...state,
+        [e.target.name]: e.target.value
+        }))
+    };
+    
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+
+        const causeData = {
+        title:inputs.title,
+        subTitle:inputs.subTitle,
+        description:inputs.description,
+        causeMission:inputs.causeMission,
+        goal:inputs.goal,
+        raised:inputs.raised,
+        donors:inputs.donors,
+        imageUrl:inputs.imageUrl,
+        benefit1:inputs.benefit1,
+        benefit2:inputs.benefit2,
+        benefit3:inputs.benefit3,
+        benefit4:inputs.benefit4,
+        benefit5:inputs.benefit5,
     };
         
         causeService.create(causeData)
@@ -57,6 +71,7 @@ const CreateCause = () => {
            placeholder="Ensure Education for every poor children" 
            value={inputs.title}
            onChange={changeHandler}
+           required
         />
       </div>
       <div className="subTitle">
@@ -68,6 +83,7 @@ const CreateCause = () => {
             placeholder="A cause to raise funds for the poor and needy children of Ethiopia."
             value={inputs.subtitle}
             onChange={changeHandler} 
+            required
         />
       </div>
       <div className="description">
@@ -80,6 +96,7 @@ const CreateCause = () => {
             placeholder="Enter text here..." 
             value={inputs.description}
             onChange={changeHandler}
+            required
         />
       </div>
       <div className="causeMission">
@@ -92,6 +109,7 @@ const CreateCause = () => {
             placeholder="Enter text here..." 
             value={inputs.causeMission}
             onChange={changeHandler}
+            required
         />
       </div>
       <div className="goal">
@@ -103,6 +121,7 @@ const CreateCause = () => {
             placeholder="50000" 
             value={inputs.goal}
             onChange={changeHandler}
+            required
         />
       </div>
       <div className="raised">
@@ -113,6 +132,7 @@ const CreateCause = () => {
             placeholder="Please enter a value of 0 here" 
             value={inputs.raised}
             onChange={changeHandler}
+            required
         />
       </div>
       <div className="donors">
@@ -124,6 +144,7 @@ const CreateCause = () => {
             placeholder="Please enter a value of 0 here" 
             value={inputs.donors}
             onChange={changeHandler}
+            required
         />
       </div>
       <div className="imageUrl">
@@ -135,6 +156,7 @@ const CreateCause = () => {
           placeholder="https://s3.us-east-2.amazonaws.com/inspire-kindness/posts/June2020/u6OzQk2udqzeCGUOWIJY.jpg"
           value={inputs.imageUrl}
           onChange={changeHandler}
+          required
         />
       </div>
       <label className='benefit'>PLEASE MENTION FIVE EXPECTED BENEFITS FROM IMPLEMENTING THE CAUSE</label>
@@ -147,6 +169,7 @@ const CreateCause = () => {
             placeholder="Improving the lives of the local population." 
             value={inputs.benefit1}
             onChange={changeHandler}
+            required
         />
       </div>
       <div className="benefit2">
@@ -157,6 +180,7 @@ const CreateCause = () => {
             placeholder="Reducing poverty in the region" 
             value={inputs.benefit2}
             onChange={changeHandler}
+            required
         />
       </div>
       <div className="benefit3">
@@ -168,6 +192,7 @@ const CreateCause = () => {
             placeholder="Access to a public health facility" 
             value={inputs.benefit3}
             onChange={changeHandler}
+            required
         />
       </div>
       <div className="benefit4">
@@ -179,6 +204,7 @@ const CreateCause = () => {
             placeholder="Reduction of unemployment in the region." 
             value={inputs.benefit4}
             onChange={changeHandler}
+            required
         />
       </div>
       <div className="benefi5">
@@ -190,6 +216,7 @@ const CreateCause = () => {
             placeholder="Creation of youth zones in the city." 
             value={inputs.benefit5}
             onChange={changeHandler}
+            required
         />
       </div>
       
