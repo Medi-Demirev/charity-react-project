@@ -9,3 +9,5 @@ export const getOne = (eventId) => request.get(`${baseUrl}/${eventId}`);
 export const create = (eventData) => request.post(baseUrl, eventData);
 
 export const edit = (eventId, eventData) => request.put(`${baseUrl}/${eventId}`, eventData);
+
+export const remove = (eventId) => request.del(`${baseUrl}/${eventId}`);
