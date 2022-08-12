@@ -1,6 +1,6 @@
-import { useState,useEffect } from 'react';
-
-import { Link, useParams } from "react-router-dom";
+import { useState,useEffect, useContext } from 'react';
+import { CauseContext } from '../../../contexts/CauseContext';
+import { Link, useParams, useNavigate } from "react-router-dom";
 import  * as causeService from '../../../services/causeService';
 
 
@@ -8,7 +8,10 @@ import "./CauseDetails.css";
 
 const CauseDetails = () => {
   const {causeId} = useParams();
+  const navigate = useNavigate();
+
   const [currentCause, setCurrentCause] = useState({});
+  const { causeRemove }= useContext(CauseContext);
 
   useEffect(() => {
     causeService.getOne(causeId)
@@ -16,6 +19,19 @@ const CauseDetails = () => {
       setCurrentCause(result)
     })
   },[]);
+
+  const causeDeleteHandler = () => {
+    const confirmation = window.confirm('Are you sure you want to delete this cause?');
+
+    if (confirmation) {
+        causeService.remove(causeId)
+            .then(() => {
+              causeRemove(causeId);
+                navigate('/all-causes');
+            })
+    }
+   
+};
 
   return (
     <div className="tp-case-details-area section-padding">
@@ -84,7 +100,7 @@ const CauseDetails = () => {
                       <Link to={`/all-causes/cause/${currentCause._id}/edit`} className="theme-btn submit-btn">
                         Edit
                       </Link>
-                      <Link to="/edit" className="theme-btn submit-btn">
+                      <Link  to ='' onClick={causeDeleteHandler} className="theme-btn submit-btn">
                         Delete
                       </Link>
                     </div>

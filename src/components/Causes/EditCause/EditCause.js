@@ -8,7 +8,7 @@ import logo from '../../../assets/Logo.png';
 
 const EditCause = () =>{
  
-    const [currentCause, setCurrentCause] = useState({});
+    const [currentCause, setCurrentCause] = useState({});  
     const { causeEdit } = useContext(CauseContext);
    
     const {causeId} = useParams();
