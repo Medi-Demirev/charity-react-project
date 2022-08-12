@@ -1,6 +1,6 @@
-import {useEffect, useState } from "react";
-
-import {Link, useParams} from 'react-router-dom';
+import {useEffect, useState, useContext } from "react";
+import { EventContext } from "../../../contexts/EventContext";
+import {Link, useParams, useNavigate} from 'react-router-dom';
 import  * as eventService from '../../../services/eventService';
 
 import "./EventDetails.css";
@@ -8,14 +8,30 @@ import "./EventDetails.css";
 const EventDetails = () => {
 
   const {eventId} = useParams();
+  const navigate = useNavigate();
+
   const [currentEvent, setCurrentEvent] = useState({});
+  const { eventRemove }= useContext(EventContext);
 
   useEffect(() => {
     eventService.getOne(eventId)
     .then(result => {
       setCurrentEvent(result)
     })
-  },[])
+  },[]);
+
+  const eventDeleteHandler = () => {
+    const confirmation = window.confirm('Are you sure you want to delete this event?');
+
+    if (confirmation) {
+        eventService.remove(eventId)
+            .then(() => {
+              eventRemove(eventId);
+                navigate('/all-events');
+            })
+    }
+   
+};
   
   return (
     <div className="wpo-event-details-area section-padding">
@@ -55,9 +71,9 @@ const EventDetails = () => {
                           <Link to ={`/all-events/${currentEvent._id}/edit`} className="theme-btn submit-btn">
                             Edit
                           </Link>
-                          <Link to ="/donate" className="theme-btn submit-btn">
+                          <Link  to ='' onClick={eventDeleteHandler} className="theme-btn submit-btn">
                             Delete
-                          </Link>
+                         </Link>
                         </div>
                       </div>
                     </div>
