@@ -62,14 +62,18 @@ export const CauseContextProvider = ({ children }) => {
     })
 };
 
-   
+const selectCause = (causeId) => {
+  return causes.find(x => x._id === causeId) || {};
+};
+
 
     return (
         <CauseContext.Provider value={{ 
         causes, 
         causeAdd, 
         causeEdit,
-        causeRemove }}>
+        causeRemove,
+        selectCause }}>
 
             {children}
         </CauseContext.Provider>

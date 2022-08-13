@@ -65,10 +65,19 @@ export const EventContextProvider = ({ children }) => {
             eventId
         })
     };
+
+    const selectEvent = (eventId) => {
+        return events.find(x => x._id === eventId) || {};
+    };
   
 
     return (
-        <EventContext.Provider value={{ events, eventAdd, eventEdit, eventRemove }}>
+        <EventContext.Provider value={{ 
+        events, 
+        eventAdd, 
+        eventEdit, 
+        eventRemove,
+        selectEvent}}>
             {children}
         </EventContext.Provider>
     )
