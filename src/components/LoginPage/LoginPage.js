@@ -1,6 +1,5 @@
 
-import React from 'react'
-import { useContext } from 'react';
+import { useContext, useState} from 'react';
 
 import { Link, useNavigate} from 'react-router-dom';
 import * as authService from "../../services/authService";
@@ -10,17 +9,31 @@ import './LoginPage.css'
 import Logo from '../../assets/Logo.png'
 
 const LoginPage = () =>{
-const { userLogin } = useContext(AuthContext);
+
 const navigate = useNavigate();
+const { userLogin } = useContext(AuthContext);
+const [inputs, setInputs] = useState({
+
+  email: '',
+  password: '',
+});
+
+const changeHandler = (e) => {
+        setInputs({
+            ...inputs,
+        [e.target.name]: e.target.value
+        })
+    };
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const {
-        email,
-        password,
-    } = Object.fromEntries(new FormData(e.target));
-          authService.login(email, password)
+    const userData = {
+        email:inputs.email,
+        password:inputs.password,
+      } 
+      
+          authService.login(userData)
           .then(authData =>{
             userLogin(authData);
             navigate('/')
@@ -47,7 +60,8 @@ const navigate = useNavigate();
             name="email"
             type="text"
             placeholder="ivan@abv.bg"
-            defaultValue=""
+            value={inputs.email}
+            onChange={changeHandler}
           />
         </div>
         <div>
@@ -57,7 +71,8 @@ const navigate = useNavigate();
             name="password"
             type="password"
             placeholder="********"
-            defaultValue=""
+            value={inputs.password}
+            onChange={changeHandler}
           />
         </div>
         <button className="btn" type="submit">

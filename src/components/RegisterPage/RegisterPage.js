@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import { Link, useNavigate} from 'react-router-dom';
 import { useContext } from 'react';
@@ -9,51 +8,51 @@ import './RegisterPage.css'
 import Logo from '../../assets/Logo.png'
 
 const RegisterPage = () => {
-  const {userLogin} = useContext(AuthContext)
+
   const navigate = useNavigate();
+  const {userLogin} = useContext(AuthContext);
+  const [choice, setChoice] = useState('');
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+    repeatPassword: "",
+    country: "",
+    name: "",
+    city:"",
+    adress: "",
+    phone: "",
+    typeAccount: ""
+  });
 
-  
-  const [option, setOption] = useState('');
+  const changeHandler = (e) => {
+    setInputs({
+        ...inputs,
+    [e.target.name]: e.target.value
+    })
+};
 
-  function handleChange(event) {
-    setOption(event.target.value)
-  }
-
-  if (option === 'Personal') {
-    
-  }
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target);
+const registerData ={
+  email:inputs.email, 
+  password:inputs.password,
+  repeatPassword:inputs.repeatPassword,
+  country:inputs.country,
+  name:inputs.name,
+  city:inputs.city, 
+  adress:inputs.adress,
+  phone:inputs.phone,
+  typeAccount:choice,
+}
 
-    const name = formData.get('name');
-    const country = formData.get('country');
-    const city = formData.get('city');
-    const adress = formData.get('adress');
-    const phone = formData.get('phone');
-    const typeAccount = formData.get('option')
-    const email = formData.get('email');
-    const password = formData.get('password');
-    const repeatPassword = formData.get('repeatPassword');
+console.log(registerData);
 
-    const registerData = {
-      name:name,
-      country,
-      city,
-      adress,
-      phone,
-      typeAccount,
-      email,
-      password,
-      repeatPassword
-    }
-
-    if (password !== repeatPassword) {
-      navigate('404')
+    if (registerData.password !== registerData.repeatPassword) {
+     return alert('password is mismatch')
   }
 
-  authService.register(email, password, country,name,city, adress,phone,typeAccount)
+  authService.register(registerData)
   .then(authData => {
       userLogin(authData);
       console.log(authData);
@@ -71,10 +70,12 @@ const RegisterPage = () => {
       <label>
         {" "}
         Type of account:
-        <select name='option' onChange={handleChange}>
+        <select value={choice}
+        onChange={(e) => setChoice(e.target.value)}
+        required>
         <option></option>
-          <option>NGO</option>
-          <option>Personal</option>
+          <option value={'NGO'} >NGO</option>
+          <option value={'Personal'} >Personal</option>
         </select>
       </label>
     </div>
@@ -88,7 +89,9 @@ const RegisterPage = () => {
             name="name"
             type="text"
             placeholder="Ivan Ivanov / Ability Foundation"
-            defaultValue=""
+            value={inputs.name}
+            onChange={changeHandler}
+            required
           />
         </div> 
         <div className="on-dark">
@@ -98,7 +101,9 @@ const RegisterPage = () => {
             name="country"
             type="text"
             placeholder="Bulgaria"
-            defaultValue=""
+            value={inputs.country}
+            onChange={changeHandler}
+            required
           />
         </div>
         <div className="on-dark">
@@ -108,7 +113,9 @@ const RegisterPage = () => {
             name="city"
             type="text"
             placeholder="Sofia"
-            defaultValue=""
+            value={inputs.city}
+            onChange={changeHandler}
+            required
           />
         </div>
         <div className="on-dark">
@@ -118,7 +125,9 @@ const RegisterPage = () => {
             name="adress"
             type="text"
             placeholder="Liberation street 45"
-            defaultValue=""
+            value={inputs.adress}
+            onChange={changeHandler}
+            required
           />
         </div>
         
@@ -129,7 +138,9 @@ const RegisterPage = () => {
             name="phone"
             type="text"
             placeholder="+359891234567"
-            defaultValue=""
+            value={inputs.phone}
+            onChange={changeHandler}
+            required
           />
         </div>
         <div className="on-dark">
@@ -139,7 +150,9 @@ const RegisterPage = () => {
             name="email"
             type="text"
             placeholder="ivan@abv.bg"
-            defaultValue=""
+            value={inputs.email}
+            onChange={changeHandler}
+            required
           />
         </div>
         
@@ -150,7 +163,9 @@ const RegisterPage = () => {
             name="password"
             type="password"
             placeholder="********"
-            defaultValue=""
+            value={inputs.password}
+            onChange={changeHandler}
+            required
           />
         </div>
         <div className="on-dark">
@@ -160,13 +175,12 @@ const RegisterPage = () => {
             name="repeatPassword"
             type="password"
             placeholder="********"
-            defaultValue=""
+            value={inputs.repeatPassword}
+            onChange={changeHandler}
+            required
           />
         </div> 
-        
-      
-
-        
+                
         <button className="btn" type="submit">
           Register
         </button>
