@@ -1,5 +1,6 @@
 import { useState,useEffect, useContext } from 'react';
 import { CauseContext } from '../../../contexts/CauseContext';
+import { AuthContext } from '../../../contexts/AuthContext';
 import { Link, useParams, useNavigate } from "react-router-dom";
 import  * as causeService from '../../../services/causeService';
 
@@ -11,7 +12,11 @@ const CauseDetails = () => {
   const navigate = useNavigate();
 
   const [currentCause, setCurrentCause] = useState({});
-  const { causeRemove }= useContext(CauseContext);
+  const { causeRemove, selectCause }= useContext(CauseContext);
+  const {user} = useContext(AuthContext);
+
+  const selectedCause = selectCause(causeId);
+  const isOwner = selectedCause._ownerId === user._id;
 
   useEffect(() => {
     causeService.getOne(causeId)
@@ -94,15 +99,22 @@ const CauseDetails = () => {
                       </ul>
                     </div>
                     <div className="submit-area sub-btn">
-                      <Link to="/donate" className="theme-btn submit-btn">
+                      {!user.accessToken
+                         ? 
+                       <> </>
+                         : isOwner 
+                         ? 
+                      <> 
+                         <Link to={`/all-causes/cause/${currentCause._id}/edit`} className="theme-btn submit-btn"> Edit</Link>
+                         <Link  to ='' onClick={causeDeleteHandler} className="theme-btn submit-btn"> Delete</Link> 
+                      </> : <>
+                       <Link to="/donate" className="theme-btn submit-btn">
                         Donate Now
                       </Link>
-                      <Link to={`/all-causes/cause/${currentCause._id}/edit`} className="theme-btn submit-btn">
-                        Edit
-                      </Link>
-                      <Link  to ='' onClick={causeDeleteHandler} className="theme-btn submit-btn">
-                        Delete
-                      </Link>
+                      </>}
+                        
+                     
+                     
                     </div>
                   </div>
                 </div>

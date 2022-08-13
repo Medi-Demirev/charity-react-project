@@ -2,6 +2,8 @@ import {useEffect, useState, useContext } from "react";
 import { EventContext } from "../../../contexts/EventContext";
 import {Link, useParams, useNavigate} from 'react-router-dom';
 import  * as eventService from '../../../services/eventService';
+import { AuthContext } from "../../../contexts/AuthContext";
+
 
 import "./EventDetails.css";
 
@@ -11,7 +13,12 @@ const EventDetails = () => {
   const navigate = useNavigate();
 
   const [currentEvent, setCurrentEvent] = useState({});
-  const { eventRemove }= useContext(EventContext);
+  const { eventRemove, selectEvent}= useContext(EventContext);
+  const  {user} = useContext(AuthContext);
+
+  const selectedEvent = selectEvent(eventId);
+  const isOwner = selectedEvent._ownerId === user._id;
+ 
 
   useEffect(() => {
     eventService.getOne(eventId)
@@ -65,15 +72,23 @@ const EventDetails = () => {
                         </div>
 
                         <div className="submit-area sub-btn">
-                          <Link to ="/donate" className="theme-btn submit-btn">
-                            Donat Now
-                          </Link>
-                          <Link to ={`/all-events/${currentEvent._id}/edit`} className="theme-btn submit-btn">
+                          {
+                          ! user.accessToken ? <></> : isOwner
+                            ?<>
+                            <Link to ={`/all-events/${currentEvent._id}/edit`} className="theme-btn submit-btn">
                             Edit
                           </Link>
                           <Link  to ='' onClick={eventDeleteHandler} className="theme-btn submit-btn">
                             Delete
                          </Link>
+                         </>
+                          :<>
+                          <Link to ="/donate" className="theme-btn submit-btn">
+                            Donate Now
+                          </Link>
+                         </>
+                          }
+                          
                         </div>
                       </div>
                     </div>
