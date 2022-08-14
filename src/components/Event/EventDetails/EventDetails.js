@@ -75,7 +75,7 @@ const EventDetails = () => {
                           {
                           ! user.accessToken ? <></> : isOwner
                             ?<>
-                            <Link to ={`/all-events/${currentEvent._id}/edit`} className="theme-btn submit-btn">
+                            <Link to ={`/all-events/event/${currentEvent._id}/edit`} className="theme-btn submit-btn">
                             Edit
                           </Link>
                           <Link  to ='' onClick={eventDeleteHandler} className="theme-btn submit-btn">
