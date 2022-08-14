@@ -26,6 +26,11 @@ import CreateEvent from './components/Event/CreateEvent/CreateEvent';
 import EditEvent from './components/Event/EditEvent/EditEvent';
 import CreateCause from './components/Causes/CreateCause/CreateCause';
 import EditCause from './components/Causes/EditCause/EditCause';
+import PrivateRoute from './components/common/PrivateRoute/PrivateRoute';
+import PriveteRouteNGO from './components/common/PrivateRoute/PriveteRouteNGO';
+import LoggedUserGuard from './components/common/LoggedUserGuard/LoggedUserGuard';
+import PublicRoute from './components/common/PublicRoute/PublicRoute';
+
 
 
 import './App.css';
@@ -42,28 +47,40 @@ function App() {
       <HeaderTopbar/>
       <Header/>
           <Routes>
+          <Route element={<PriveteRouteNGO />} >
+              <Route path='/create-event' element={<CreateEvent/>}/>
+              <Route path='/create-cause' element={<CreateCause/>}/>
+          </Route>
+             
+          <Route element={<PrivateRoute />} >
+             <Route path='/create-event' element={<CreateEvent/>}/>
+             <Route path='/create-cause' element={<CreateCause/>}/>
+             <Route path='/all-events/event/:eventId/edit' element={<EditEvent />}/>
+             <Route path='/all-causes/cause/:causeId/edit' element={<EditCause/>}/>
+             <Route path='/cause/:causeId/edit' element={<EditCause />}/>
+             <Route path='/event/:eventId/edit' element={<EditEvent />}/>
+          </Route>
+          
+          <Route element={<LoggedUserGuard />} >
              <Route path='/login' element={<Login/>}/>
              <Route path='/register' element={<RegisterPage/>}/>
-             <Route path='/logout' element={<Logout/>}/>
+          </Route>
+
+          <Route element={<PublicRoute />} >
              <Route path='/contact' element={<ContactPage/>}/>
              <Route path='/about' element={<About/>}/>
              <Route path='/' element={<HomePage/>}/>
              <Route path='/all-causes' element={<CausesCatalog/>}/>
              <Route path='/all-events' element={<EventCatalog/>}/>
-             <Route path='/all-volunteers' element={<VolunteersCatalog/>}/>
              <Route path='/event/:eventId' element={<EventDetails />}/>
-             <Route path='/create-event' element={<CreateEvent/>}/>
-             <Route path='/all-events/:eventId/edit' element={<EditEvent/>}/>
-             <Route path='/all-events/event/:eventId' element={<EventDetails />}/>
              <Route path='/cause/:causeId' element={<CauseDetails />}/>
+             <Route path='/all-events/event/:eventId' element={<EventDetails />}/>
              <Route path='/all-causes/cause/:causeId' element={<CauseDetails />}/>
-             <Route path='/create-cause' element={<CreateCause/>}/>
-             <Route path='/all-causes/cause/:causeId/edit' element={<EditCause/>}/>
+             <Route path='/all-volunteers' element={<VolunteersCatalog/>}/>
              <Route path='/*' element={<ErrorPage/>}/>;
-         
-        
+             <Route path='/logout' element={<Logout/>}/>
+         </Route>
           </Routes>
-
       <Footer/>
     </EventContextProvider>
     </VolunteerContextProvider>
