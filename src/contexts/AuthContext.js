@@ -33,3 +33,10 @@ export const AuthProvider = ({
         </AuthContext.Provider>  
     );
 };
+
+// Custom Hook
+export const useAuthContext = () => {
+    const context = useContext(AuthContext);
+
+    return context;
+};
