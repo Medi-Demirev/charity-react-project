@@ -30,7 +30,7 @@ const EventPage = () => {
                 <div className="row">
                     <div className="col-12">
                     {events.length > 0
-                     ? events.slice(0,2).map(x => <EventItem key={x._id} event ={x}/>)
+                     ? events.slice(0,3).map(x => <EventItem key={x._id} event ={x}/>)
                      :<h3 className='no-events'>NO ACTIVE EVENTS YET!</h3>} 
                        
                     </div>
