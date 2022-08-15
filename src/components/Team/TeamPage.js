@@ -5,7 +5,8 @@ import VolunteerProfile from './VolunteerProfile/VolunteerProfile';
 import './TeamPage.css';
 
 const TeamPage = () => {
-    const {volunteer} = useContext(VolunteerContext);
+    const {volunteers} = useContext(VolunteerContext);
+   
 
     return (
         <div  className={`volunteer-area section-padding `}>
@@ -23,8 +24,8 @@ const TeamPage = () => {
                 </div>
                 <div className="volunteer-wrap">
                     <div className="row">
-                    {volunteer.length > 0
-                      ? volunteer.slice(0,4).map(x => <VolunteerProfile key={x._id} volunteer ={x}/>)
+                    {volunteers.length > 0
+                      ? volunteers.slice(0,4).map(x => <VolunteerProfile key={x._id} volunteer ={x}/>)
                      :<h3 className='no-vounteer'>NO ACTIVE VOLUNTEERS YET!</h3>}
                         
                     </div>
