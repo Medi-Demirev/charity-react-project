@@ -2,7 +2,7 @@ import React from 'react';
 import {Link}  from 'react-router-dom'
 
 import errorImgaage from '../../assets/2.png'
-import './ErrorPage.css'
+import '../404/ErrorPage.css'
 
 const ErrorPage = (props) => {
     return(
