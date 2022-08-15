@@ -39,7 +39,7 @@ const VolunteerProfileDetails = () => {
       </div>
       <div className="col-md-6">
         <div className="profile-head">
-          <h5>{currentVolunteer.fullName}</h5>
+          <h5>{currentVolunteer.firstName} {currentVolunteer.lastName}</h5>
           <h6>Volunteer</h6>
           <p className="proile-rating">
             
@@ -74,10 +74,26 @@ const VolunteerProfileDetails = () => {
             aria-labelledby="home-tab">
             <div className="row">
               <div className="col-md-6">
-                <label>Name</label>
+                <label>First Name</label>
               </div>
               <div className="col-md-6">
-                <p>{currentVolunteer.fullName}</p>
+                <p>{currentVolunteer.firstName}</p>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-6">
+                <label>Last Name</label>
+              </div>
+              <div className="col-md-6">
+                <p>{currentVolunteer.lastName}</p>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-6">
+                <label>Age</label>
+              </div>
+              <div className="col-md-6">
+                <p>{currentVolunteer.age}</p>
               </div>
             </div>
             <div className="row">
