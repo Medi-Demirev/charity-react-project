@@ -7,7 +7,7 @@ const VolunteerProfile = ({volunteer}) => {
                                     <img src={volunteer.imageProfile} alt="" />
                                 </div>
                                 <div className="volunteer-content">
-                                    <h2><Link  to={`volunteer/${volunteer._id}`}>{volunteer.fullName}</Link></h2>
+                                    <h2><Link  to={`volunteer/${volunteer._id}`}>{volunteer.firstName} {volunteer.lastName}</Link></h2>
                                     <span>Volunteer</span>
                                 </div>
                             </div>
