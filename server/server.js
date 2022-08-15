@@ -1372,12 +1372,15 @@
 
         volunteers:{
             "hfghf54567453456867":{
-            "fullName" : "Ivan Ivanov",
+            "firstName" : "Ivan",
+            "lastName" : "Ivanov",
+            "age": "31",
             "country" : "Bulgaria",
             "city" : "Sofia",
             "adress" : "Vitosha street 23",
             "phone" : "+359892345678",
             "email" : "ivan@abv.bg",
+            "message":"some message",
             "imageProfile" : "https://expertphotography.b-cdn.net/wp-content/uploads/2020/08/social-media-profile-photos-3.jpg",
         },
         },
