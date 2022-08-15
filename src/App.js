@@ -26,10 +26,12 @@ import CreateEvent from './components/Event/CreateEvent/CreateEvent';
 import EditEvent from './components/Event/EditEvent/EditEvent';
 import CreateCause from './components/Causes/CreateCause/CreateCause';
 import EditCause from './components/Causes/EditCause/EditCause';
+import VolunteerProfileDetails from './components/Team/VolunteerProfileDetails/VolunteerProfileDetails';
 import PrivateRoute from './components/common/PrivateRoute/PrivateRoute';
 import PriveteRouteNGO from './components/common/PrivateRoute/PriveteRouteNGO';
 import LoggedUserGuard from './components/common/LoggedUserGuard/LoggedUserGuard';
 import PublicRoute from './components/common/PublicRoute/PublicRoute';
+
 
 
 
@@ -47,6 +49,7 @@ function App() {
       <HeaderTopbar/>
       <Header/>
           <Routes>
+          
           <Route element={<PriveteRouteNGO />} >
               <Route path='/create-event' element={<CreateEvent/>}/>
               <Route path='/create-cause' element={<CreateCause/>}/>
@@ -77,7 +80,9 @@ function App() {
              <Route path='/all-events/event/:eventId' element={<EventDetails />}/>
              <Route path='/all-causes/cause/:causeId' element={<CauseDetails />}/>
              <Route path='/all-volunteers' element={<VolunteersCatalog/>}/>
-             <Route path='/*' element={<ErrorPage/>}/>;
+             <Route path='/volunteer/:volunteerId' element={<VolunteerProfileDetails/>}/>
+             <Route path='/all-volunteers/volunteer/:volunteerId' element={<VolunteerProfileDetails />}/>
+             <Route path='/*' element={<ErrorPage />}/>;
              <Route path='/logout' element={<Logout/>}/>
          </Route>
           </Routes>
