@@ -27,8 +27,10 @@ import EditEvent from './components/Event/EditEvent/EditEvent';
 import CreateCause from './components/Causes/CreateCause/CreateCause';
 import EditCause from './components/Causes/EditCause/EditCause';
 import VolunteerProfileDetails from './components/Team/VolunteerProfileDetails/VolunteerProfileDetails';
+import VolunteerForm from './components/Team/VolunteerForm/VolunteerForm';
 import PrivateRoute from './components/common/PrivateRoute/PrivateRoute';
 import PriveteRouteNGO from './components/common/PrivateRoute/PriveteRouteNGO';
+import PrivateRoutePersonal from './components/common/PrivateRoute/PrivateRoutePersonal';
 import LoggedUserGuard from './components/common/LoggedUserGuard/LoggedUserGuard';
 import PublicRoute from './components/common/PublicRoute/PublicRoute';
 
@@ -50,11 +52,17 @@ function App() {
       <Header/>
           <Routes>
           
+          <Route element={<PrivateRoutePersonal />} >
+              <Route path='/join-team' element={<VolunteerForm/>}/>
+              
+          </Route>
+
           <Route element={<PriveteRouteNGO />} >
               <Route path='/create-event' element={<CreateEvent/>}/>
               <Route path='/create-cause' element={<CreateCause/>}/>
           </Route>
              
+             <Route path='/join-team' element={<VolunteerForm/>}/>
           <Route element={<PrivateRoute />} >
              <Route path='/create-event' element={<CreateEvent/>}/>
              <Route path='/create-cause' element={<CreateCause/>}/>
