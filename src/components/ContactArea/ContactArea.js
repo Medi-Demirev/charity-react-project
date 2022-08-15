@@ -1,5 +1,5 @@
 import React from 'react'
-import './ContactArea.css'
+import '../ContactArea/ContactArea.css'
 
 const ContactArea = (props) => {
 
