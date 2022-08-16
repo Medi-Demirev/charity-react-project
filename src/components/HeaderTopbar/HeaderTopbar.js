@@ -1,17 +1,14 @@
-import React from 'react';
-import { useContext } from 'react';
-import {Link, useParams}  from 'react-router-dom';
+import{ useContext} from 'react';
+import {Link}  from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
 import { UserProfileContext } from '../../contexts/UserProfileContext';
+
 
 import './HeaderTopbar.css'
 
 const HeaderTopbar = () => {
     const { user } = useContext(AuthContext);
-    const {profiles , selectProfile} = useContext(UserProfileContext);
- 
-    let prodileId ;
-    const isOwner = profiles.map(x=> x._ownerId=== user._id? prodileId = x._id: x );
+    const {selected} = useContext(UserProfileContext);
 
     return(	
         <div className="fixed-navbar">
@@ -33,7 +30,7 @@ const HeaderTopbar = () => {
                                     {user.accessToken 
                                     ?
                                     <> 
-                                        <li><i className="fa fa-user" aria-hidden="true" /><Link to={`/my-profile/${prodileId}`}>Profile</Link></li>
+                                        <li>MY BALANCE: ${selected.balance}<i className="fa fa-user" aria-hidden="true" /><Link to={`/my-profile/${selected._id}`}>Profile</Link></li>
                                         <li><i className="fa fa-arrow-circle-up" aria-hidden="true" /><Link to="/logout">Logout</Link></li>
 
                                   </>  :

@@ -1,8 +1,10 @@
 import { createContext, useEffect, useReducer } from "react";
 import * as usersProfilesService from '../services/usersProfilesService';
 import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "./AuthContext";
 
 export const UserProfileContext = createContext();
+
 
 const UserProfileReducer = (state, action) => {
     switch (action.type) {
@@ -17,41 +19,51 @@ const UserProfileReducer = (state, action) => {
         default:
             return state;
     }
-  };
-  
+};
+
 
 export const UserProfileContextProvider = ({ children }) => {
-       const navigate = useNavigate();
+    const navigate = useNavigate();
+    const { user } = useAuthContext();
+    const [profiles, dispatch] = useReducer(UserProfileReducer, []);
 
-       const [profiles, dispatch] = useReducer(UserProfileReducer, []);
+    let profileId;
 
-    useEffect(()=>{
+    const selectProfile = (profileId) => {
+        return profiles.find(x => x._id === profileId) || {};
+    };
+
+    profiles.map(x => x._ownerId === user._id ? profileId = x._id : x);
+    const selected = selectProfile(profileId)
+
+
+    useEffect(() => {
         usersProfilesService.getAll()
-          .then(result=>{
-            const action = {
-              type: 'ADD_PROFILES',
-              payload: result
-          };
-  
-          dispatch(action);
-         
-          })
-          .catch(error => {
-            // console.log(error);
-             })
-      },[]);
+            .then(result => {
+                const action = {
+                    type: 'ADD_PROFILES',
+                    payload: result
+                };
+
+                dispatch(action);
+
+            })
+            .catch(error => {
+                // console.log(error);
+            })
+    }, []);
 
 
     const profileAdd = (profileData) => {
-         dispatch({
-        type: 'ADD_PROFILE',
-        payload: profileData,
-    })
-       
+        dispatch({
+            type: 'ADD_PROFILE',
+            payload: profileData,
+        })
+
     };
 
 
-      const profileEdit = (profileId, profileData) => {
+    const profileEdit = (profileId, profileData) => {
         dispatch({
             type: 'EDIT_PROFILE',
             payload: profileData,
@@ -66,18 +78,17 @@ export const UserProfileContextProvider = ({ children }) => {
         })
     };
 
-    const selectProfile = (profileId) => {
-        return profiles.find(x => x._id === profileId) || {};
-    };
-  
 
     return (
-        <UserProfileContext.Provider value={{ 
-        profiles, 
-        profileAdd,
-        profileEdit, 
-        profileRemove,
-        selectProfile}}>
+        <UserProfileContext.Provider value={{
+            profiles,
+            profileId,
+            selected,
+            profileAdd,
+            profileEdit,
+            profileRemove,
+            selectProfile
+        }}>
             {children}
         </UserProfileContext.Provider>
     )
