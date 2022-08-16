@@ -13,7 +13,7 @@ select{
     text-align: center;
     position: relative;
     width: 540px;
-    height: 1100px;
+    height: 1300px;
     border-radius: 20px;
     padding: 40px;
     box-sizing: border-box;
@@ -38,4 +38,7 @@ select{
 .register-link{
     padding-top: 15px;
 }
-    
+
+.field{
+    padding-top: 15px;
+}

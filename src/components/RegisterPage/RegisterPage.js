@@ -3,7 +3,9 @@ import { Link, useNavigate} from 'react-router-dom';
 import { useContext } from 'react';
 
 import * as authService from "../../services/authService";
+import * as usersProfilesService from "../../services/usersProfilesService";
 import { AuthContext } from '../../contexts/AuthContext';
+import { UserProfileContext } from '../../contexts/UserProfileContext';
 import './RegisterPage.css'
 import Logo from '../../assets/Logo.png'
 
@@ -11,6 +13,7 @@ const RegisterPage = () => {
 
   const navigate = useNavigate();
   const {userLogin} = useContext(AuthContext);
+  const { profileAdd} = useContext(UserProfileContext);
   const [choice, setChoice] = useState('');
   const [inputs, setInputs] = useState({
     email: "",
@@ -21,6 +24,8 @@ const RegisterPage = () => {
     city:"",
     adress: "",
     phone: "",
+    balance:"",
+    imageUrl: "",
     typeAccount: ""
   });
 
@@ -43,7 +48,19 @@ const registerData ={
   city:inputs.city, 
   adress:inputs.adress,
   phone:inputs.phone,
+  imageUrl:inputs.imageUrl,
+  balance:inputs.balance,
   typeAccount:choice,
+}
+const userProfilestData={
+  name:inputs.name,
+  country:inputs.country,
+  city:inputs.city, 
+  adress:inputs.adress,
+  phone:inputs.phone,
+  email:inputs.email, 
+  imageUrl:inputs.imageUrl,
+  balance:inputs.balance,
 }
 
 console.log(registerData);
@@ -52,12 +69,18 @@ console.log(registerData);
      return alert('password is mismatch')
   }
 
+ 
   authService.register(registerData)
   .then(authData => {
       userLogin(authData);
       console.log(authData);
+      usersProfilesService.create(userProfilestData)
+      .then(result => {
+        profileAdd(result)
+      });
       navigate('/');
   });
+
 
   }
     return (
@@ -155,6 +178,32 @@ console.log(registerData);
             required
           />
         </div>
+
+        <div className="on-dark">
+          <label htmlFor="balance">Add funds to account:</label>
+          <input
+            id="balance"
+            name="balance"
+            type="text"
+            placeholder="$100"
+            value={inputs.balance}
+            onChange={changeHandler}
+            required
+          />
+        </div>
+
+        <div className="imageUrl">
+        <label htmlFor="imageUrl">Profile image:</label>
+        <input
+          name="imageUrl"
+          id="imageUrl"
+          type="text"
+          placeholder="https://s3.us-east-2.amazonaws.com/inspire-kindness/posts/June2020/u6OzQk2udqzeCGUOWIJY.jpg"
+          value={inputs.imageUrl}
+          onChange={changeHandler}
+          required
+        />
+      </div>
         
         <div className="on-dark">
           <label htmlFor="password">Password:</label>
