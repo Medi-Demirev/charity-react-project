@@ -5,6 +5,7 @@ import { CauseContextProvider } from './contexts/CauseContext';
 import { VolunteerContextProvider } from './contexts/VolunteerContext';
 import { EventContextProvider } from './contexts/EventContext';
 import { AuthProvider } from './contexts/AuthContext';
+import { UserProfileContextProvider } from './contexts/UserProfileContext';
 
 
 import ContactPage from './components/ContactPage/ContactPage';
@@ -28,11 +29,13 @@ import CreateCause from './components/Causes/CreateCause/CreateCause';
 import EditCause from './components/Causes/EditCause/EditCause';
 import VolunteerProfileDetails from './components/Team/VolunteerProfileDetails/VolunteerProfileDetails';
 import VolunteerForm from './components/Team/VolunteerForm/VolunteerForm';
+import Profile from './components/Profile/Profile';
 import PrivateRoute from './components/common/PrivateRoute/PrivateRoute';
 import PriveteRouteNGO from './components/common/PrivateRoute/PriveteRouteNGO';
 import PrivateRoutePersonal from './components/common/PrivateRoute/PrivateRoutePersonal';
 import LoggedUserGuard from './components/common/LoggedUserGuard/LoggedUserGuard';
 import PublicRoute from './components/common/PublicRoute/PublicRoute';
+import ProfileRoute from './components/common/PrivateRoute/ProfileRoute';
 
 
 
@@ -48,13 +51,18 @@ function App() {
     <CauseContextProvider>
     <VolunteerContextProvider>
     <EventContextProvider>
+    <UserProfileContextProvider>
       <HeaderTopbar/>
       <Header/>
           <Routes>
-          
+
+          <Route element={<ProfileRoute />} >
+          <Route path='/my-profile/:profileId' element={<Profile/>}/>
+          <Route path='/logout' element={<Logout/>}/>
+          </Route>
+
           <Route element={<PrivateRoutePersonal />} >
               <Route path='/join-team' element={<VolunteerForm/>}/>
-              
           </Route>
 
           <Route element={<PriveteRouteNGO />} >
@@ -91,10 +99,11 @@ function App() {
              <Route path='/volunteer/:volunteerId' element={<VolunteerProfileDetails/>}/>
              <Route path='/all-volunteers/volunteer/:volunteerId' element={<VolunteerProfileDetails />}/>
              <Route path='/*' element={<ErrorPage />}/>;
-             <Route path='/logout' element={<Logout/>}/>
+             
          </Route>
           </Routes>
       <Footer/>
+    </UserProfileContextProvider>
     </EventContextProvider>
     </VolunteerContextProvider>
     </CauseContextProvider>
