@@ -1,6 +1,5 @@
 import {Link} from 'react-router-dom'
 const CauseItem = ({ cause }) => {
-    console.log(cause._id);
 
     return (
         
@@ -10,7 +9,7 @@ const CauseItem = ({ cause }) => {
                     <div className="cause-img">
                         <img   src={cause.imageUrl} alt="" />
                         <div className="case-btn">
-                            <Link className="theme-btn" to="/donate">
+                            <Link className="theme-btn" to={`cause/${cause._id}`}>
                                 Donate Now
                                 <i className="fa fa-angle-double-right" aria-hidden="true" />
                             </Link>
@@ -20,10 +19,10 @@ const CauseItem = ({ cause }) => {
                 <div className="cause-text">
                     <ul>
                         <li>
-                            <Link to="/">GOAL: {cause.goal}</Link>
+                            <Link to="">GOAL: {cause.goal}</Link>
                         </li >
                         <li>
-                            <Link  to="/">RISED:  {cause.raised}</Link>
+                            <Link  to={`cause/${cause._id}`}>Donate</Link>
                         </li>
                     </ul>
                     <h3>
