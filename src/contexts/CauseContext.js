@@ -7,11 +7,14 @@ export const CauseContext = createContext();
 const causeReducer = (state, action) => {
   switch (action.type) {
       case 'ADD_CAUSES':
-          return [...action.payload];
+        return action.payload.map(x => ({ ...x, donations: [] }));
       case 'ADD_CAUSE':
           return [...state, action.payload];
+      case 'FETCH_CAUSE_DETAILS':
       case 'EDIT_CAUSE':
           return state.map(x => x._id === action.causeId ? action.payload : x);
+      case 'ADD_DONATION':
+          return state.map(x => x._id === action.causeId ? { ...x, donations: [...x.donations, action.payload] } : x);
       case 'REMOVE_CAUSE':
           return state.filter(x => x._id !== action.causeId);
       default:
@@ -66,6 +69,21 @@ const selectCause = (causeId) => {
   return causes.find(x => x._id === causeId) || {};
 };
 
+const fetchCauseDetails = (causeId, causeDetails) => {
+  dispatch({
+      type: 'FETCH_CAUSE_DETAILS',
+      payload: causeDetails,
+      causeId,
+  })
+};
+
+const donationAdd = (causeId, donation) => {
+  dispatch({
+      type: 'ADD_DONATION',
+      payload: donation,
+      causeId
+  });
+};
 
     return (
         <CauseContext.Provider value={{ 
@@ -73,7 +91,9 @@ const selectCause = (causeId) => {
         causeAdd, 
         causeEdit,
         causeRemove,
-        selectCause }}>
+        selectCause, 
+        fetchCauseDetails,
+        donationAdd }}>
 
             {children}
         </CauseContext.Provider>
