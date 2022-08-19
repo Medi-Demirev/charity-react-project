@@ -57,6 +57,28 @@ const EventDetails = () => {
                         <h2>{currentEvent.title}</h2>
                         <div className="case-b-text">
                           <p>{currentEvent.description}</p>
+                          <div className="progress-section">
+                      <div className="process">
+                        <div className="progress">
+                          <div className="progress-bar">
+                            <div className="progress-value">
+                              <span>{65.5}</span>%
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <ul>
+                      <li>
+                        <span>Raised:</span> {'raised'}
+                      </li>
+                      <li>
+                        <span>Goal:</span> {'currentCause.goa'}
+                      </li>
+                      <li>
+                        <span>Number of donations:</span> {'count'}
+                      </li>
+                    </ul>
+                    </div>
                         </div>
                         <div className="case-bb-text">
                           <h3>Event Mission</h3>
