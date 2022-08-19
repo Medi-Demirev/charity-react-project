@@ -61,4 +61,41 @@
     margin-top: 0;
   }
   
+  .donation-label{
+    color: #f55c23;
+    padding-left: 65px;
+}
+.donations{
+  background-color: #eff0f1;
+  width: 280px;
+  height: 50px;
+  margin-bottom: 30px;
+
   
+}
+.progres-section {
+  padding-top: 35px;
+}
+.progres {
+  height: 5px!important;
+  overflow: unset!important;
+  margin-bottom: 10px;
+}
+.progres .progres-bar {
+  border-radius: 15px;
+  box-shadow: none;
+  position: relative;
+  animation: animate-positive 4s;
+  width: 10%;
+  background: #2ebd60;
+  height: 5px;
+}
+
+.progres .progres-value {
+ text-align: center;
+  right: 0;
+  top: -30px;
+  position: absolute;
+  color: #333;
+  font-size: 20px;
+}
