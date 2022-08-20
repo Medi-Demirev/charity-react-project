@@ -7,11 +7,14 @@ export const EventContext = createContext();
 const eventReducer = (state, action) => {
     switch (action.type) {
         case 'ADD_EVENTS':
-            return [...action.payload];
+            return action.payload.map(x => ({ ...x, eventDonations: [] }));
         case 'ADD_EVENT':
             return [...state, action.payload];
+        case 'FETCH_EVENT_DETAILS':
         case 'EDIT_EVENT':
             return state.map(x => x._id === action.eventId ? action.payload : x);
+        case 'ADD_DONATION':
+            return state.map(x => x._id === action.eventId ? { ...x, eventDonations: [...x.eventDonations, action.payload] } : x);
         case 'REMOVE_EVENT':
             return state.filter(x => x._id !== action.eventId);
         default:
@@ -69,7 +72,22 @@ export const EventContextProvider = ({ children }) => {
     const selectEvent = (eventId) => {
         return events.find(x => x._id === eventId) || {};
     };
-  
+
+    const fetchEventDetails = (eventId, eventDetails) => {
+        dispatch({
+            type: 'FETCH_EVENT_DETAILS',
+            payload: eventDetails,
+            eventId,
+        })
+      };
+      
+      const donationAdd = (eventId, donation) => {
+        dispatch({
+            type: 'ADD_DONATION',
+            payload: donation,
+            eventId
+        });
+      };
 
     return (
         <EventContext.Provider value={{ 
@@ -77,7 +95,10 @@ export const EventContextProvider = ({ children }) => {
         eventAdd, 
         eventEdit, 
         eventRemove,
-        selectEvent}}>
+        selectEvent,
+        fetchEventDetails,
+        donationAdd
+        }}>
             {children}
         </EventContext.Provider>
     )
