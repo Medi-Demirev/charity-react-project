@@ -1381,7 +1381,9 @@
         donations: {
     
         },
-
+        eventDonations: {
+    
+        },
         volunteers:{
             "hfghf54567453456867":{
             "firstName" : "Ivan",
@@ -1414,6 +1416,7 @@
             "month" : "MART",
             "fromHour" : "10:00 AM",
             "toHour" : "13:00 PM",
+            "goal" : "4500",
             "imageUrl" : "https://www.unhcr.org/hk/wp-content/uploads/sites/13/2016/10/4f87f5626.jpg",
         },
         }
