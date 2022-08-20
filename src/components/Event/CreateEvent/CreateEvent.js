@@ -20,6 +20,7 @@ const CreateEvent = () => {
             fromHour:"",
             toHour:"",
             toHour:"",
+            goal:"",
             imageUrl: "",
             benefit1: "",
             benefit2: "",
@@ -50,7 +51,7 @@ const CreateEvent = () => {
             month:inputs.month,
             fromHour:inputs.fromHour,
             toHour:inputs.toHour,
-            toHour:inputs.month,
+            goal:inputs.goal,
             imageUrl:inputs.imageUrl,
             benefit1:inputs.benefit1,
             benefit2:inputs.benefit2,
@@ -202,6 +203,18 @@ const CreateEvent = () => {
             type="text" 
             placeholder="13:00 PM" 
             value={inputs.toHour}
+            onChange={changeHandler}
+            required
+        />
+      </div>
+      <div className="goal">
+        <label htmlFor="goal">Goal:</label>
+        <input 
+            name="goal" 
+            id="goal" 
+            type="text" 
+            placeholder="$5000" 
+            value={inputs.goal}
             onChange={changeHandler}
             required
         />
