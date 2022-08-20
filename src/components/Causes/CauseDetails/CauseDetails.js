@@ -26,8 +26,8 @@ const CauseDetails = (props) => {
 
   const [count, setCount] = useState(0);
   const [raised, setRaised] = useState(0);
-  const [percents, setPercents] = useState(0);
-  const [numDonations, setNumDonations] = useState(1);
+  let [percents, setPercents] = useState(0);
+  const [numDonations, setNumDonations] = useState(0);
 
   const [currentCause, setCurrentCause] = useState({});
   const [inputs, setInputs] = useState({ donation: "", donors:"", percentCompleted:1});
@@ -35,7 +35,7 @@ const CauseDetails = (props) => {
   const selectedCause = selectCause(causeId);
   const isOwner = selectedCause._ownerId === user._id;
 
-  const profileId = selected._id
+  const profileId = selected._id;
  
   const changeHandler = (e) => {
     setInputs({
@@ -63,19 +63,18 @@ const CauseDetails = (props) => {
 
 
 const handleIncrementNumDonations = () => {
-  setCount(countOfDonations + 1);
+	setCount(countOfDonations + 1);
 };
 
 const handleIncrementRaised = () => {
   setRaised(raised + Number(inputs.donation));
-  selected.balance = selected.balance - Number(inputs.donation);
+  selected.balance = (selected.balance - Number(inputs.donation).toFixed(2));
 
   usersProfilesService.edit(profileId, (selected ))
   .then(result => {
     profileEdit(profileId, selected)
   });
 };
-
 
   const causeDeleteHandler = () => {
     const confirmation = window.confirm('Are you sure you want to delete this cause?');
@@ -92,7 +91,7 @@ const handleIncrementRaised = () => {
 const handleIncrementPercent = () => {
 
 	const percentResult = percentage(Number(inputs.donation), Number(currentCause.goal));
-	setPercents(prevCount => prevCount + Number(percentResult));
+	setPercents(prevCount => (prevCount + Number(percentResult)));
 	
   };
 
@@ -117,6 +116,10 @@ const onSubmit = (e) => {
 
 function percentage(percent, total) {
     return ((percent / total) * 100).toFixed(2);
+};
+
+if (percents > 100) {
+		percents = 100;
 };
 
 const spanStyle = {
@@ -145,7 +148,7 @@ const spanStyle = {
                           <div className="progres">
                             <div className="progres-bar" style={spanStyle.root}>
                               <div className="progres-value" >
-                                <span>{percents}</span>%
+                                <span>{percents.toFixed(2)}</span>%
                               </div>
                             </div>
                           </div>
@@ -153,10 +156,10 @@ const spanStyle = {
                       </div>
                       <ul>
                         <li>
-                          <span raised={raised}>Raised:</span> {raised} 
+                          <span >Raised:</span> ${raised.toFixed(2)} 
                         </li>
                         <li>
-                          <span>Goal:</span> {currentCause.goal}
+                          <span>Goal:</span> ${currentCause.goal}
                         </li>
                         <li>
                           <span>Count of donations:</span> {numDonations}
