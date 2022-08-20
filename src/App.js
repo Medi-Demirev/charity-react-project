@@ -57,8 +57,8 @@ function App() {
           <Routes>
 
           <Route element={<ProfileRoute />} >
-          <Route path='/my-profile/:profileId' element={<Profile/>}/>
-          <Route path='/logout' element={<Logout/>}/>
+            <Route path='/my-profile/:profileId' element={<Profile/>}/>
+            <Route path='/logout' element={<Logout/>}/>
           </Route>
 
           <Route element={<PrivateRoutePersonal />} >
@@ -99,7 +99,7 @@ function App() {
              <Route path='/volunteer/:volunteerId' element={<VolunteerProfileDetails/>}/>
              <Route path='/all-volunteers/volunteer/:volunteerId' element={<VolunteerProfileDetails />}/>
              <Route path='/*' element={<ErrorPage />}/>;
-             
+                        
          </Route>
           </Routes>
       <Footer/>

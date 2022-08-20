@@ -1,31 +1,78 @@
 import {useEffect, useState, useContext } from "react";
-import { EventContext } from "../../../contexts/EventContext";
 import {Link, useParams, useNavigate} from 'react-router-dom';
+
 import  * as eventService from '../../../services/eventService';
+import  * as eventDonationsService from '../../../services/eventDonationsService';
+import  * as usersProfilesService from '../../../services/usersProfilesService';
+
+import { EventContext } from "../../../contexts/EventContext";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { UserProfileContext } from "../../../contexts/UserProfileContext";
 
 
 import "./EventDetails.css";
 
 const EventDetails = () => {
 
+  let sumRaised = 0;
+  let countOfDonations = 0;
+  let countOfPercents = 0;
+
+  const { eventRemove, selectEvent, donationAdd, fetchEventDetails} = useContext(EventContext);
+  const {selected, profileEdit} = useContext(UserProfileContext);
+  const {user} = useContext(AuthContext);
+
   const {eventId} = useParams();
   const navigate = useNavigate();
 
+  const [count, setCount] = useState(0);
+  const [raised, setRaised] = useState(0);
+  let [percents, setPercents] = useState(0);
+  const [numDonations, setNumDonations] = useState(0);
+
   const [currentEvent, setCurrentEvent] = useState({});
-  const { eventRemove, selectEvent}= useContext(EventContext);
-  const  {user} = useContext(AuthContext);
+  const [inputs, setInputs] = useState({ donation: "", donors:"", percentCompleted:1});
 
   const selectedEvent = selectEvent(eventId);
   const isOwner = selectedEvent._ownerId === user._id;
- 
+  const profileId = selected._id;
+
+  const changeHandler = (e) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   useEffect(() => {
-    eventService.getOne(eventId)
-    .then(result => {
-      setCurrentEvent(result)
-    })
-  },[]);
+    (async () => {
+        const eventDetails = await eventService.getOne(eventId);
+        setCurrentEvent(eventDetails);
+        const eventDonations = await eventDonationsService.getByEventId(eventId);
+        fetchEventDetails(eventId, { ...eventDetails, eventDonations: eventDonations.map(x=> Number( x.donation.donation) )});
+        eventDonations.map(x=>sumRaised+= Number( x.donation.donation) );
+        eventDonations.map(x=>countOfDonations += Number( x.donation.donors) );
+		    eventDonations.map(x =>countOfPercents = x.donation.percentCompleted).slice(-1).pop()
+		
+        setRaised(sumRaised);
+        setNumDonations(countOfDonations);
+		    setPercents(countOfPercents);
+    })();
+}, []);
+
+const handleIncrementNumDonations = () => {
+	setCount(countOfDonations + 1);
+};
+
+const handleIncrementRaised = () => {
+  setRaised(raised + Number(inputs.donation));
+  selected.balance = (selected.balance - Number(inputs.donation).toFixed(2));
+
+  usersProfilesService.edit(profileId, (selected ))
+  .then(result => {
+    profileEdit(profileId, selected)
+  });
+};
 
   const eventDeleteHandler = () => {
     const confirmation = window.confirm('Are you sure you want to delete this event?');
@@ -40,6 +87,47 @@ const EventDetails = () => {
    
 };
   
+const handleIncrementPercent = () => {
+
+	const percentResult = percentage(Number(inputs.donation), Number(currentEvent.goal));
+	setPercents(percents+ Number(percentResult));
+
+  };
+
+const onSubmit = (e) => {
+  e.preventDefault();
+
+  const donationData ={
+    donation:inputs.donation,
+    donors:1,
+	  percentCompleted:percents
+  }
+
+  eventDonationsService.create(eventId, donationData)
+      .then(result => {
+        donationAdd(eventId, donationData);
+        window.location.reload();
+      });
+
+      inputs.donation = "";
+};
+
+
+function percentage(percent, total) {
+    return ((percent / total) * 100).toFixed(2);
+};
+
+if (percents > 100) {
+  percents = 100;
+};
+
+const spanStyle1 = {
+	root :{
+		width: `${percents}%`
+		
+	  },
+ };
+
   return (
     <div className="wpo-event-details-area section-padding">
       <div className="container">
@@ -57,25 +145,25 @@ const EventDetails = () => {
                         <h2>{currentEvent.title}</h2>
                         <div className="case-b-text">
                           <p>{currentEvent.description}</p>
-                          <div className="progress-section">
-                      <div className="process">
-                        <div className="progress">
-                          <div className="progress-bar">
-                            <div className="progress-value">
-                              <span>{65.5}</span>%
+                          <div className="progres-section">
+                      <div className="proces">
+                        <div className="progres">
+                          <div className="progres-bar" style={spanStyle1.root}>
+                            <div className="progres-value">
+                              <span >{percents.toFixed(2)}</span>%
                             </div>
                           </div>
                         </div>
                       </div>
                       <ul>
                       <li>
-                        <span>Raised:</span> {'raised'}
+                        <span>Raised:</span> ${raised.toFixed(2)} 
                       </li>
                       <li>
-                        <span>Goal:</span> {'currentCause.goa'}
+                        <span>Goal:</span> ${currentEvent.goal}
                       </li>
                       <li>
-                        <span>Number of donations:</span> {'count'}
+                        <span>Count of donations:</span> {numDonations}
                       </li>
                     </ul>
                     </div>
@@ -85,7 +173,7 @@ const EventDetails = () => {
                           <p>{currentEvent.eventMission}</p>
                           <h3>Benefits of realizing the event</h3>
                           <ul>
-                            <li> {currentEvent.benefit1} </li>
+                            <li>{currentEvent.benefit1} </li>
                             <li>{currentEvent.benefit2}</li>
                             <li>{currentEvent.benefit3}</li>
                             <li>{currentEvent.benefit4}</li>
@@ -105,9 +193,36 @@ const EventDetails = () => {
                          </Link>
                          </>
                           :<>
-                          <Link to ="/donate" className="theme-btn submit-btn">
-                            Donate Now
-                          </Link>
+                          <form
+                              onSubmit={onSubmit}
+                              className="donation-funds"
+                            >
+                              <div className="profile-funds">
+                                <label className="donation-label">
+                                  Donate funds to this event
+                                </label>
+                                <input
+                                  className="donations"
+                                  name="donation"
+                                  id="donation"
+                                  type="text"
+                                  placeholder="$50"
+                                  value={inputs.donation}
+                                  onChange={changeHandler}
+                                />
+                              </div>
+
+                              <button
+                                onClick={() => {
+                                  handleIncrementNumDonations();
+                                  handleIncrementRaised();
+                                  handleIncrementPercent();
+                                }}
+                                className="theme-btn8"
+                              >
+                                Donate now
+                              </button>
+                            </form>
                          </>
                           }
                           
