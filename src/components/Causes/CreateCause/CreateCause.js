@@ -14,8 +14,6 @@ const CreateCause = () => {
         description: "",
         causeMission: "",
         goal: "",
-        raised: "",
-        donors: "",
         imageUrl: "",
         benefit1: "",
         benefit2: "",
@@ -41,8 +39,6 @@ const CreateCause = () => {
         description:inputs.description,
         causeMission:inputs.causeMission,
         goal:inputs.goal,
-        raised:inputs.raised,
-        donors:inputs.donors,
         imageUrl:inputs.imageUrl,
         benefit1:inputs.benefit1,
         benefit2:inputs.benefit2,
@@ -93,7 +89,7 @@ const CreateCause = () => {
             name="description" 
             id="description" 
             type="text" 
-            placeholder="Enter text here..." 
+            placeholder="Please enter your cause description here…" 
             value={inputs.description}
             onChange={changeHandler}
             required
@@ -106,7 +102,7 @@ const CreateCause = () => {
             name="causeMission" 
             id="causeMission" 
             type="text" 
-            placeholder="Enter text here..." 
+            placeholder="Please describe the mission of your cause here....." 
             value={inputs.causeMission}
             onChange={changeHandler}
             required
@@ -124,29 +120,7 @@ const CreateCause = () => {
             required
         />
       </div>
-      <div className="raised">
-        <label htmlFor="raised">Current funds raised:</label>
-        <input 
-            name="raised" 
-            id="raised" type="text" 
-            placeholder="Please enter a value of 0 here" 
-            value={inputs.raised}
-            onChange={changeHandler}
-            required
-        />
-      </div>
-      <div className="donors">
-        <label htmlFor="donors">Current donors:</label>
-        <input 
-            name="donors"  
-            id="donors" 
-            type="text" 
-            placeholder="Please enter a value of 0 here" 
-            value={inputs.donors}
-            onChange={changeHandler}
-            required
-        />
-      </div>
+      
       <div className="imageUrl">
         <label htmlFor="imageUrl">Image:</label>
         <input
