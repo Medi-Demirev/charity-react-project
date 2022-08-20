@@ -106,7 +106,6 @@ const onSubmit = (e) => {
   eventDonationsService.create(eventId, donationData)
       .then(result => {
         donationAdd(eventId, donationData);
-        window.location.reload();
       });
 
       inputs.donation = "";
@@ -162,9 +161,7 @@ const spanStyle1 = {
                       <li>
                         <span>Goal:</span> ${currentEvent.goal}
                       </li>
-                      <li>
-                        <span>Count of donations:</span> {numDonations}
-                      </li>
+                     
                     </ul>
                     </div>
                         </div>

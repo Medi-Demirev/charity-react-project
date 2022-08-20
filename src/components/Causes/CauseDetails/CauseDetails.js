@@ -1,15 +1,16 @@
 import { useState,useEffect, useContext, useCallback } from 'react';
+import { Link, useParams, useNavigate } from "react-router-dom";
+
 import { CauseContext } from '../../../contexts/CauseContext';
 import { AuthContext } from '../../../contexts/AuthContext';
 import { UserProfileContext } from '../../../contexts/UserProfileContext';
-import { Link, useParams, useNavigate } from "react-router-dom";
+
 import  * as causeService from '../../../services/causeService';
 import  * as donationService from '../../../services/donationService';
 import  * as usersProfilesService from '../../../services/usersProfilesService';
-
+import  LoadingSpinner  from '../../Spinner/Spinner'
 
 import "./CauseDetails.css";
-
 
 const CauseDetails = (props) => {
 
@@ -28,6 +29,7 @@ const CauseDetails = (props) => {
   const [raised, setRaised] = useState(0);
   let [percents, setPercents] = useState(0);
   const [numDonations, setNumDonations] = useState(0);
+  let [isLoading, setIsLoading] = useState(false);
 
   const [currentCause, setCurrentCause] = useState({});
   const [inputs, setInputs] = useState({ donation: "", donors:"", percentCompleted:1});
@@ -95,6 +97,13 @@ const handleIncrementPercent = () => {
 	
   };
 
+ /* const spinnerHandeler = () => {
+    setTimeout(() => {
+		setIsLoading(!isLoading)
+    }, 112000)
+    
+  };*/
+
 const onSubmit = (e) => {
   e.preventDefault();
 
@@ -107,7 +116,6 @@ const onSubmit = (e) => {
   donationService.create(causeId, donationData)
       .then(result => {
         donationAdd(causeId, donationData);
-        window.location.reload();
       });
 
       inputs.donation = "";
@@ -120,7 +128,9 @@ function percentage(percent, total) {
 
 if (percents > 100) {
 		percents = 100;
-};
+} else if (percents < 0) {
+	percents = 0;
+}
 
 const spanStyle = {
 	root :{
@@ -160,9 +170,6 @@ const spanStyle = {
                         </li>
                         <li>
                           <span>Goal:</span> ${currentCause.goal}
-                        </li>
-                        <li>
-                          <span>Count of donations:</span> {numDonations}
                         </li>
                       </ul>
                       <div className="case-b-text">
