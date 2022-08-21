@@ -8,9 +8,14 @@ import { UserProfileContext } from '../../../contexts/UserProfileContext';
 import  * as causeService from '../../../services/causeService';
 import  * as donationService from '../../../services/donationService';
 import  * as usersProfilesService from '../../../services/usersProfilesService';
-import  LoadingSpinner  from '../../Spinner/Spinner'
+import  LoadingSpinner  from '../../Spinner/Spinner';
+
+import * as validator from '../../../services/util/validator';
+import * as notifier from '../../../services/util/notifier';
+import { NOTIFICATIONS } from "../../../services/util/constants/notifications";
 
 import "./CauseDetails.css";
+import { Alert } from 'bootstrap';
 
 const CauseDetails = (props) => {
 
@@ -39,6 +44,8 @@ const CauseDetails = (props) => {
 
   const profileId = selected._id;
  
+  const [error, setError] = useState({donation:"" })
+
   const changeHandler = (e) => {
     setInputs({
       ...inputs,
@@ -46,6 +53,21 @@ const CauseDetails = (props) => {
     });
   };
 
+  const validateRequest = (e) => {
+	const fieldName = e.target.name;
+	const fieldValue = e.target.value;
+	let validationResult;
+  
+	switch (fieldName) {
+		case 'donation':
+			validationResult = validator.validateDonaion(fieldValue);
+	}
+  
+	setError(state => ({
+		...state,
+		[fieldName]: validationResult
+	}));
+  };
 
   useEffect(() => {
     (async () => {
@@ -71,6 +93,12 @@ const handleIncrementNumDonations = () => {
 const handleIncrementRaised = () => {
   setRaised(raised + Number(inputs.donation));
   selected.balance = (selected.balance - Number(inputs.donation).toFixed(2));
+
+  if (selected.balance < 0) {
+	selected.balance = 0
+	alert('Please add funds to your balance')
+	navigate(`/my-profile/${profileId}`)
+  }
 
   usersProfilesService.edit(profileId, (selected ))
   .then(result => {
@@ -222,23 +250,41 @@ const spanStyle = {
                                   className="donations"
                                   name="donation"
                                   id="donation"
-                                  type="text"
+                                  type="number"
                                   placeholder="$50"
                                   value={inputs.donation}
                                   onChange={changeHandler}
+								  onBlur={validateRequest}
                                 />
-                              </div>
 
-                              <button
+                              </div>
+							  {error.donation &&
+              					<span className="error" >{error.donation}</span>
+          					  }
+							  {inputs.donation && !error.donation ?
+							    <button
                                 onClick={() => {
                                   handleIncrementNumDonations();
                                   handleIncrementRaised();
                                   handleIncrementPercent();
                                 }}
                                 className="theme-btn8"
+								defaultValue= "submit"
                               >
                                 Donate now
-                              </button>
+                              </button> 
+							  :   <button
+							  onClick={() => {
+								handleIncrementNumDonations();
+								handleIncrementRaised();
+								handleIncrementPercent();
+							  }}
+							  className="theme-btn8"
+							  defaultValue= "submit" disabled
+							>
+							  Donate now
+							</button>}
+                            
                             </form>
                           </>
                         )}
