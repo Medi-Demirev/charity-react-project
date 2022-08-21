@@ -1,6 +1,17 @@
 # Getting Started with Create React App
 
+# About the Project
+
+This is a defense project for the ReactJS course at SoftUni.
+
+Kindness is an app that aims to create Charitable causes and events to help people in need.Provides an opportunity to register two types of users with different rights.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# Installing Dependencies
+The current repository already includes a node_modules folder with everything necessary. To manually install all necessary dependencies run the following in the console in the main directory and in /src:
+
+npm i
 
 ## Available Scripts
 
