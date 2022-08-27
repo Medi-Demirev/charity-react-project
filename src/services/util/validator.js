@@ -18,6 +18,7 @@ export const validateCountry = (value) => {
 
     return '';
 };
+
 export const validateCity = (value) => {
 
     if (value< USER_VALIDATIONS.CITY_MIN_LENGTH || value > USER_VALIDATIONS.CITY_MAX_LENGTH) {
@@ -27,6 +28,32 @@ export const validateCity = (value) => {
     return '';
 };
 
+export const validateFirstName = (value) => {
+
+    if (value< USER_VALIDATIONS.FIRST_NAME_MIN_LENGTH || value > USER_VALIDATIONS.FIRST_NAME_MAX_LENGTH) {
+        return USER_VALIDATIONS.FIRST_NAME_ERROR_MSG;
+    }
+
+    return '';
+};
+
+export const validateLastName = (value) => {
+
+    if (value< USER_VALIDATIONS.LAST_NAME_MIN_LENGTH || value > USER_VALIDATIONS.LAST_NAME_MAX_LENGTH) {
+        return USER_VALIDATIONS.LAST_NAME_ERROR_MSG;
+    }
+
+    return '';
+};
+
+export const validateMessage = (value) => {
+
+    if (value< USER_VALIDATIONS.MESSAGE_MIN_LENGTH || value > USER_VALIDATIONS.MESSAGE_MAX_LENGTH) {
+        return USER_VALIDATIONS.MESSAGE_ERROR_MSG;
+    }
+
+    return '';
+};
 
 export const validateEmail = (email) => 
 {
@@ -78,7 +105,7 @@ export const validateFunds = (funds) =>
 
 export const validateTypeAccount = (typeAccount) => 
 {
-    const isValid = USER_VALIDATIONS.TYPEACCOUNT._REGEX.test(typeAccount);
+    const isValid = USER_VALIDATIONS.TYPEACCOUNT_REGEX.test(typeAccount);
 
     if(!isValid)
     {
@@ -114,28 +141,51 @@ export const validatePassword = (password) =>
 
 export const validateConfirmPassword = (password, repeatPassword) =>
 {
-    if(password!=repeatPassword){
-        return USER_VALIDATIONS. REPEAT_PASSWORD_ERROR_MSG;
+    if(password !== repeatPassword){
+        return USER_VALIDATIONS.REPEAT_PASSWORD_ERROR_MSG;
     }
-
-    return '';
+    return;
 }
   
 
-export const validateDonaion = (donation) =>
+export const validateDonaion = (donation, balance ) =>
 {
     if(donation <= 0 ){
-        return USER_VALIDATIONS. DONATION_ERROR_MSG;
+        return USER_VALIDATIONS.DONATION_ERROR_MSG;
+    } else if (donation > balance ) {
+        return USER_VALIDATIONS.NEGATIVE_BALANCE_ERROR_MSG
     }
-
     return '';
 }
 
-export const validateBalance = (balance) =>
+export const validateBalance = (addFunds) =>
 {
-    if(balance <= 0 ){
-        return USER_VALIDATIONS. BALANCE_ERROR_MSG;
+    if(addFunds <= 0 ){
+        return USER_VALIDATIONS.BALANCE_ERROR_MSG;
     }
 
     return '';
 }
+
+export const validateAge = (age) => 
+{
+    const isValid = USER_VALIDATIONS.AGE_REGEX.test(age);
+
+    if(!isValid)
+    {
+        return USER_VALIDATIONS.AGE_ERROR_MSG;
+    }
+
+    return '';
+};
+
+export const validateNegativeBalance = (donation, balance) =>
+{
+    if( donation > balance){
+        
+        return USER_VALIDATIONS.NEGATIVE_BALANCE_ERROR_MSG;
+    }
+   
+    return '';
+}
+  
