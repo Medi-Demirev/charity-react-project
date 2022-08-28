@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useVolunteerContext } from '../../../contexts/VolunteerContext';
 import * as volunteerService from '../../../services/volunteerService';
 
-import * as validator from '../../../services/util/validator';
+import * as validator from '../../../services/util/validators/userValidator';
 import * as notifier from '../../../services/util/notifier';
 import { NOTIFICATIONS } from "../../../services/util/constants/notifications";
 
