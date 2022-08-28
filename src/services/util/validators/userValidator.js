@@ -1,4 +1,4 @@
-import {USER_VALIDATIONS } from "../util/constants/validations"; 
+import {USER_VALIDATIONS } from "../constants/validations"; 
 
 
 export const validateName = (value) => {

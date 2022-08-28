@@ -1,4 +1,4 @@
-import * as request from "./util/requester";
+import * as request from "./util/requester/requester";
 
 const baseUrl = 'http://localhost:3030/data/volunteers';
 
