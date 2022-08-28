@@ -30,13 +30,13 @@ export const USER_VALIDATIONS = {
     PHONE_REGEX: /(\+\d{1,3}\s?)?((\(\d{3}\)\s?)|(\d{3})(\s|-?))(\d{3}(\s|-?))(\d{4})(\s?(([E|e]xt[:|.|]?)|x|X)(\s?\d+))?/,
     PHONE_ERROR_MSG: "The phone number must be up to 10 digits in the following formats: +359812345678 / 0891234567 ",
 
-    ADRESS_REGEX: /^([\w\s\W]+[\w\W]?)\s([\d\-\\\/\w]*)?/,
+    ADRESS_REGEX:/^([\w\s\W]+[\w\W]?)\s([\d\-\\\/\w]*)?/,
     ADRESS_ERROR_MSG: "The address must be in one of these formats: Bulgaria Blvd., 1463 Ndk, Sofia or 13 Democracy Street",
 
     TYPEACCOUNT_REGEX: /(\w+)/,
     TYPEACCOUNT_ERROR_MSG:"Please select an account type",
 
-    FUNDS_REGEX: /\d+/,
+    FUNDS_REGEX: /^(?!0\d)\d*(\.\d+)?$/,
     FUNDS_ERROR_MSG:"Please enter only positive integers",
 
     IMAGEURL_REGEX: /(https:\/\/)([^\s(["<,>/]*)(\/)[^\s[",><]*(.png|.jpg)(\?[^\s[",><]*)?/g,
@@ -53,4 +53,32 @@ export const USER_VALIDATIONS = {
     AGE_ERROR_MSG: "You must be 17 years of age or older.",
 
     NEGATIVE_BALANCE_ERROR_MSG: "You don't have enough funds. Please add funds to your balance!",
-}
+};
+
+export const POST_VALIDATIONS = {
+    TITLE_MIN_LEGTH: 5,
+    TITLE_MAX_LEGTH: 50,
+    TITLE_ERROR_MSG: "Title must be between 5 and 50 symbols.",
+    SUBTITLE_ERROR_MSG: "Subtitle must be between 5 and 50 symbols.",
+
+    IMAGEURL_REGEX: /(https:\/\/)([^\s(["<,>/]*)(\/)[^\s[",><]*(.png|.jpg)(\?[^\s[",><]*)?/g,
+    IMAGEURL_ERROR_MSG: "Please enter one of the following formats: https://... or  http://....",
+
+    DESCRIPTION_MIN_LEGTH: 5,
+    DESCRIPTION_MAX_LEGTH: 100,
+    DESCRIPTION_ERROR_MSG: "Description must be between 5 and 200 symbols.",
+
+    MISSION_MIN_LEGTH: 5,
+    MISSION_MAX_LEGTH: 100,
+    MISSION_ERROR_MSG: "Misson must be between 5 and 200 symbols.",
+
+    BENEFIT_MIN_LEGTH: 5,
+    BENEFIT_MAX_LEGTH: 50,
+    BENEFIT_ERROR_MSG: "Benefit must be between 5 and 50 symbols.",
+
+    FUNDS_REGEX: /^(?!0\d)\d*(\.\d+)?$/,
+    FUNDS_ERROR_MSG:"Please enter only positive numbers",
+   
+
+};
+
