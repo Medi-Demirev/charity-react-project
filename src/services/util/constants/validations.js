@@ -45,9 +45,9 @@ export const USER_VALIDATIONS = {
     DONATION_ERROR_MSG:"Please choose numbers greater than 0!",
     BALANCE_ERROR_MSG:" Please choose numbers greater than 0!",
 
-    MESSAGE_MAX_LENGTH: 100,
+    MESSAGE_MAX_LENGTH: 200,
     MESSAGE_MIN_LENGTH: 1, 
-    MESSAGE_ERROR_MSG: "Message must be between 1 and 100 symbols.",
+    MESSAGE_ERROR_MSG: "Message must be between 1 and 200 symbols.",
 
     AGE_REGEX:/^(?:1[01][0-9]|120|1[7-9]|[2-9][0-9])$/,
     AGE_ERROR_MSG: "You must be 17 years of age or older.",
@@ -65,16 +65,16 @@ export const POST_VALIDATIONS = {
     IMAGEURL_ERROR_MSG: "Please enter one of the following formats: https://... or  http://....",
 
     DESCRIPTION_MIN_LEGTH: 5,
-    DESCRIPTION_MAX_LEGTH: 100,
+    DESCRIPTION_MAX_LEGTH: 200,
     DESCRIPTION_ERROR_MSG: "Description must be between 5 and 200 symbols.",
 
     MISSION_MIN_LEGTH: 5,
-    MISSION_MAX_LEGTH: 100,
+    MISSION_MAX_LEGTH: 200,
     MISSION_ERROR_MSG: "Misson must be between 5 and 200 symbols.",
 
     BENEFIT_MIN_LEGTH: 5,
-    BENEFIT_MAX_LEGTH: 50,
-    BENEFIT_ERROR_MSG: "Benefit must be between 5 and 50 symbols.",
+    BENEFIT_MAX_LEGTH: 100,
+    BENEFIT_ERROR_MSG: "Benefit must be between 5 and 100 symbols.",
 
     FUNDS_REGEX: /^(?!0\d)\d*(\.\d+)?$/,
     FUNDS_ERROR_MSG:"Please enter only positive numbers",
