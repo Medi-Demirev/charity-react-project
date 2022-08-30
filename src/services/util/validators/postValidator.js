@@ -1,4 +1,8 @@
-import {POST_VALIDATIONS } from "../constants/validations"; 
+import { POST_VALIDATIONS } from "../constants/validations";
+import { postcodeValidator } from 'postcode-validator';
+import * as validations from '../constants/validations'
+
+
 
 export const validatePostTitle = (value) => {
 
@@ -18,12 +22,10 @@ export const validatePostSubTitle = (value) => {
     return '';
 };
 
-export const validateImageUrl = (imageUrl) => 
-{
+export const validateImageUrl = (imageUrl) => {
     const isValid = POST_VALIDATIONS.IMAGEURL_REGEX.test(imageUrl);
 
-    if(!isValid)
-    {
+    if (!isValid) {
         return POST_VALIDATIONS.IMAGEURL_ERROR_MSG;
     }
 
@@ -57,14 +59,78 @@ export const validateBenefit = (value) => {
     return '';
 };
 
-export const validateFunds = (funds) => 
-{
+export const validateFunds = (funds) => {
     const isValid = POST_VALIDATIONS.FUNDS_REGEX.test(funds);
 
-    if(!isValid)
-    {
+    if (!isValid) {
         return POST_VALIDATIONS.FUNDS_ERROR_MSG;
     }
 
     return '';
+};
+
+export const validateCountry = (value) => {
+
+    if (value < POST_VALIDATIONS.COUNTRY_MIN_LENGTH || value > POST_VALIDATIONS.COUNTRY_MAX_LENGTH) {
+        return POST_VALIDATIONS.COUNTRY_ERROR_MSG;
+    }
+
+    return '';
+};
+
+export const validateCity = (value) => {
+
+    if (value < POST_VALIDATIONS.CITY_MIN_LENGTH || value > POST_VALIDATIONS.CITY_MAX_LENGTH) {
+        return POST_VALIDATIONS.CITY_ERROR_MSG;
+    }
+
+    return '';
+};
+
+export const validateDate = (date) => {
+    const isValid = POST_VALIDATIONS.DATE_REGEX.test(date);
+
+    if (!isValid) {
+        return POST_VALIDATIONS.DATE_ERROR_MSG;
+    }
+
+    return '';
+};
+
+export const validateMonth = (month) => {
+    const isValid = POST_VALIDATIONS.MONTH_REGEX.test(month);
+
+    if (!isValid) {
+        return POST_VALIDATIONS.MONTH_ERROR_MSG;
+    }
+
+    return '';
+};
+
+export const validateHour = (hour) => {
+    const isValid = POST_VALIDATIONS.HOUR_REGEX.test(hour);
+
+    if (!isValid) {
+        return POST_VALIDATIONS.HOUR_ERROR_MSG;
+    }
+
+    return '';
+};
+
+
+export const validatePostcode = (postcode, country) => {
+
+    for (const [currentCountry, countryCode] of Object.entries(validations.countries)) {
+
+        if (currentCountry === country) {
+            const isValid = postcodeValidator(postcode, countryCode)
+
+            if (!isValid) {
+                return POST_VALIDATIONS.POST_CODE_ERROR_MSG;
+            }
+
+            return '';
+        }
+
+    }
 };
