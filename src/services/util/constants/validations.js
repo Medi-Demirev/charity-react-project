@@ -57,9 +57,9 @@ export const USER_VALIDATIONS = {
 
 export const POST_VALIDATIONS = {
     TITLE_MIN_LEGTH: 5,
-    TITLE_MAX_LEGTH: 50,
-    TITLE_ERROR_MSG: "Title must be between 5 and 50 symbols.",
-    SUBTITLE_ERROR_MSG: "Subtitle must be between 5 and 50 symbols.",
+    TITLE_MAX_LEGTH: 100,
+    TITLE_ERROR_MSG: "Title must be between 5 and 100 symbols.",
+    SUBTITLE_ERROR_MSG: "Subtitle must be between 5 and 100 symbols.",
 
     IMAGEURL_REGEX: /(https:\/\/)([^\s(["<,>/]*)(\/)[^\s[",><]*(.png|.jpg)(\?[^\s[",><]*)?/g,
     IMAGEURL_ERROR_MSG: "Please enter one of the following formats: https://... or  http://....",
