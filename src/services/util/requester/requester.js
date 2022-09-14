@@ -1,4 +1,8 @@
+import { Navigate } from "react-router-dom";
+import * as notifier from '../../../services/util/notifier';
+
 const request = async (method, url, data) => {
+    
     try {
         const user = localStorage.getItem('auth');
         const auth = JSON.parse(user || '{}');
@@ -31,13 +35,20 @@ const request = async (method, url, data) => {
             const result = await response.json();
             return result;
             
-        } else if (response.status=== 403) {
+        }   else if (response?.status === 409) {
+            
+            Navigate('/register')
+            
+    }
+        
+        else if (response.status=== 403) {
            let error = ''
             throw new Error(error.message);
            
         }
 
     } catch (err) {
+        notifier.notifyError(err.message)
         throw err
     }
 };
