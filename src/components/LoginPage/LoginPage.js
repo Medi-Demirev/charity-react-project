@@ -1,9 +1,13 @@
 
-import { useContext, useState} from 'react';
+import { useContext, useState, useEffect} from 'react';
 
 import { Link, useNavigate} from 'react-router-dom';
 import * as authService from "../../services/authService";
 import { AuthContext } from '../../contexts/AuthContext';
+
+import * as validator from '../../services/util/validators/userValidator';
+import * as notifier from '../../services/util/notifier';
+
 
 import './LoginPage.css'
 import Logo from '../../assets/Logo.png'
@@ -12,11 +16,9 @@ const LoginPage = () =>{
 
 const navigate = useNavigate();
 const { userLogin } = useContext(AuthContext);
-const [inputs, setInputs] = useState({
+const [inputs, setInputs] = useState({email: '', password: ''});
+const [error, setError] = useState({email: "", password: ""});
 
-  email: '',
-  password: '',
-});
 
 const changeHandler = (e) => {
         setInputs({
@@ -24,6 +26,25 @@ const changeHandler = (e) => {
         [e.target.name]: e.target.value
         })
     };
+
+    const validateRequest = (e) => {
+      const fieldName = e.target.name;
+      const fieldValue = e.target.value;;
+      let validationResult;
+     
+      switch (fieldName) {
+        case 'email':
+          validationResult = validator.validateLogin(fieldValue);
+          break;
+      ;
+      
+      }
+  
+      setError(state => ({
+        ...state,
+        [fieldName]: validationResult
+      }));
+    }
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -39,13 +60,18 @@ const changeHandler = (e) => {
             navigate('/')
           })
         
-        .catch(() => {
-          
-            navigate('/404');
-        })
+          .catch(err => {
+            if (err) {
+            alert('Wrong email or password!');
+            navigate("/login")
+           inputs.email = '';
+           inputs.password = '';
 
+          }
+            notifier.notifyError(err.message)
+          });
+        };
    
-  };
   
     return (
       
@@ -62,7 +88,12 @@ const changeHandler = (e) => {
             placeholder="ivan@abv.bg"
             value={inputs.email}
             onChange={changeHandler}
+            onInput={validateRequest}
+            required
           />
+           {error.email &&
+            <span className="error" >{error.email}</span>
+          }
         </div>
         <div>
           <label htmlFor="password">Password:</label>
@@ -73,7 +104,12 @@ const changeHandler = (e) => {
             placeholder="********"
             value={inputs.password}
             onChange={changeHandler}
+            onInput={validateRequest}
+            required
           />
+           {error.password &&
+            <span className="error" >{error.password}</span>
+          }
         </div>
         <button className="btn" type="submit">
           Login
@@ -85,7 +121,6 @@ const changeHandler = (e) => {
         </p>
       </form>
     </section>
-   
 
     )
 }

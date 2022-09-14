@@ -23,10 +23,12 @@ export const USER_VALIDATIONS = {
     PASSWORD_REGEX: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/,
     PASSWORD_ERROR_MSG: "Password must be at least 6 symbols and should contain capital letter, digit and a special symbol.",
     REPEAT_PASSWORD_ERROR_MSG: "Confirm password does not match password.",
+    EMPTY_PASSWORD_ERROR_MSG: "Please enter your password!",
 
     EMAIL_REGEX:  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
     EMAIL_ERROR_MSG: "Valid email is required.",
     TAKEN_EMAIL_ERROR_MSG: "Email address is taken!.",
+    WRONG_EMAIL_ERROR_MSG: "Wrong email or password!",
 
     PHONE_REGEX: /(\+\d{1,3}\s?)?((\(\d{3}\)\s?)|(\d{3})(\s|-?))(\d{3}(\s|-?))(\d{4})(\s?(([E|e]xt[:|.|]?)|x|X)(\s?\d+))?/,
     PHONE_ERROR_MSG: "The phone number must be up to 10 digits in the following formats: +359812345678 / 0891234567 ",

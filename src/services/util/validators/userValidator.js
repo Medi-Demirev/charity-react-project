@@ -55,17 +55,19 @@ export const validateMessage = (value) => {
     return '';
 };
 
-export const validateEmail = (email) => 
-{
-    const isValid = USER_VALIDATIONS.EMAIL_REGEX.test(email);
+export const validateEmail =  (email, isTakenEmail) => {
 
-    if(!isValid)
-    {
-        return USER_VALIDATIONS.EMAIL_ERROR_MSG;
-    }
+const isValid = USER_VALIDATIONS.EMAIL_REGEX.test(email);
 
-    return '';
-};
+if (!isValid) {
+    return USER_VALIDATIONS.EMAIL_ERROR_MSG
+}else if (isTakenEmail) {
+    return USER_VALIDATIONS.TAKEN_EMAIL_ERROR_MSG
+}
+
+return "";
+}
+
 
 export const validatePhone = (phone) => 
 {
@@ -189,3 +191,13 @@ export const validateNegativeBalance = (donation, balance) =>
     return '';
 }
   
+export const validateLogin = (email) => {
+
+    const isValid = USER_VALIDATIONS.EMAIL_REGEX.test(email);
+    
+    if (!isValid) {
+        return USER_VALIDATIONS.EMAIL_ERROR_MSG
+    }
+    
+    return "";
+    }
