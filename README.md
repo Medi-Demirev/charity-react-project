@@ -4,6 +4,25 @@
 
 This is a defense project for the ReactJS course at SoftUni.
 
+To start the project:
+
+Open the server folder in integrated terminal and type node server.js
+
+Open the client folder in integrated terminal and type :
+
+npm i - command installs a package and any packages that it depends on.
+
+npm start- To start the react project in localhost:3000.
+
+For backend i'm using https://github.com/softuni-practice-server/softuni-practice-server
+
+For the needs of the project, new collections have been added to the finished server. 
+The server is hosted at the following address:https://api-kindness.herokuapp.com/. 
+If you want to use it locally, the base URL must be changed from https://api-kindness.herokuapp.com/ to http://localhost:3000/.
+
+# HOME PAGE
+
+(./home.png)
 Kindness is an app that aims to create Charitable causes and events to help people in need.Provides an opportunity to register two types of users with different rights.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
