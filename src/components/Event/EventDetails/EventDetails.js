@@ -9,6 +9,10 @@ import { EventContext } from "../../../contexts/EventContext";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { UserProfileContext } from "../../../contexts/UserProfileContext";
 
+import * as validator from '../../../services/util/validators/userValidator';
+import * as notifier from '../../../services/util/notifier';
+import { NOTIFICATIONS } from "../../../services/util/constants/notifications";
+
 
 import "./EventDetails.css";
 
@@ -32,6 +36,7 @@ const EventDetails = () => {
 
   const [currentEvent, setCurrentEvent] = useState({});
   const [inputs, setInputs] = useState({ donation: "", donors:"", percentCompleted:1});
+  const [error, setError] = useState({donation:"" });
 
   const selectedEvent = selectEvent(eventId);
   const isOwner = selectedEvent._ownerId === user._id;
@@ -43,6 +48,22 @@ const EventDetails = () => {
       [e.target.name]: e.target.value,
     });
   };
+
+  const validateRequest = (e) => {
+    const fieldName = e.target.name;
+    const fieldValue = e.target.value;
+    let validationResult;
+    
+    switch (fieldName) {
+      case 'donation':
+        validationResult = validator.validateDonaion(fieldValue);
+    }
+    
+    setError(state => ({
+      ...state,
+      [fieldName]: validationResult
+    }));
+    };
 
   useEffect(() => {
     (async () => {
@@ -68,10 +89,12 @@ const handleIncrementRaised = () => {
   setRaised(raised + Number(inputs.donation));
   selected.balance = (selected.balance - Number(inputs.donation).toFixed(2));
 
-  usersProfilesService.edit(profileId, (selected ))
-  .then(result => {
-    profileEdit(profileId, selected)
-  });
+  if (selected.balance < 0) {
+    selected.balance = 0
+    alert('Please add funds to your balance')
+    navigate(`/my-profile/${profileId}`)
+    }
+ 
 };
 
   const eventDeleteHandler = () => {
@@ -106,6 +129,11 @@ const onSubmit = (e) => {
   eventDonationsService.create(eventId, donationData)
       .then(result => {
         donationAdd(eventId, donationData);
+
+   usersProfilesService.edit(profileId, (selected ))
+      .then(result => {
+          profileEdit(profileId, selected)
+        });
       });
 
       inputs.donation = "";
@@ -202,13 +230,17 @@ const spanStyle1 = {
                                   className="donations"
                                   name="donation"
                                   id="donation"
-                                  type="text"
+                                  type="number"
                                   placeholder="$50"
                                   value={inputs.donation}
                                   onChange={changeHandler}
+                                  onBlur={validateRequest}
                                 />
+                                {error.donation &&
+              					        <span className="error" >{error.donation}</span>
+          					  }
                               </div>
-
+                              {inputs.donation && !error.donation ?
                               <button
                                 onClick={() => {
                                   handleIncrementNumDonations();
@@ -219,6 +251,18 @@ const spanStyle1 = {
                               >
                                 Donate now
                               </button>
+                              : 
+                              <button
+                              onClick={() => {
+                                handleIncrementNumDonations();
+                                handleIncrementRaised();
+                                handleIncrementPercent();
+                              }}
+                              className="theme-btn8" disabled
+                            >
+                              Donate now
+                            </button> 
+                            }
                             </form>
                          </>
                           }
