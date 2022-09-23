@@ -105,7 +105,8 @@
 }
 .funds-label{
     color: #f55c23;
-    padding-left: 65px;
+    padding-left: 75px;
+  
 }
 
 .theme-btn8  {
@@ -126,6 +127,7 @@
     margin-left: 55px;
     padding-top:  5px;
     width: fit-content;
+    margin-top: 20px;
 }
 
 .theme-btn8:hover,  .theme-btn8:focus,  .theme-btn8:active {
@@ -138,3 +140,9 @@
    margin-top: 50px;
    color: #f55c23;
   }
+  .error {
+    color:red;
+    font: bolder;
+    margin-top: 20px;
+  }
+ 

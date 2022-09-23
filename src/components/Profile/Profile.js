@@ -5,6 +5,10 @@ import { useAuthContext } from "../../contexts/AuthContext";
 import { UserProfileContext } from "../../contexts/UserProfileContext";
 import  * as usersProfilesService from '../../services/usersProfilesService';
 
+import * as validator from '../../services/util/validators/userValidator';
+import * as notifier from '../../services/util/notifier';
+import { NOTIFICATIONS } from "../../services/util/constants/notifications";
+
 import logo from "../../assets/Logo.png";
 import "../Profile/Profile.css";
 
@@ -17,7 +21,9 @@ const Profile = () => {
   const [inputs, setInputs] = useState({
     balance: "",
   });
-  
+  const [error, setError] = useState({balance:"" });
+
+
   const changeHandler = (e) => {
     setInputs({
       ...inputs,
@@ -25,11 +31,27 @@ const Profile = () => {
     });
   };
 
+  const validateRequest = (e) => {
+    const fieldName = e.target.name;
+    const fieldValue = e.target.value;
+    let validationResult;
+    
+    switch (fieldName) {
+      case 'balance':
+        validationResult = validator.validateBalance(fieldValue);
+    }
+    
+    setError(state => ({
+      ...state,
+      [fieldName]: validationResult
+    }));
+    };
 
   const onSubmit = (e) => {
     e.preventDefault();
     
-    const fundsData = {
+   
+    const profileData = {
       balance: Number(inputs.balance) + Number(selectedProfile.balance),
       name:selectedProfile.name,
       country: selectedProfile.country,
@@ -39,14 +61,16 @@ const Profile = () => {
       phone:selectedProfile.phone,
       imageUrl:user.imageUrl
     };
-    
-    usersProfilesService.edit(profileId, (fundsData ))
+
+    usersProfilesService.edit(profileId, (profileData ))
     .then(result => {
+      notifier.notifySuccess(NOTIFICATIONS.FUNDS_ADDED);
       profileEdit(profileId, result)
         navigate(`/my-profile/${profileId}`)
     });
-    inputs.balance= ''
-  };
+    inputs.balance = ''
+  
+};
   
   return (
     <>
@@ -153,15 +177,24 @@ const Profile = () => {
             className="funds"
             name="balance"
             id="funds"
-            type="text"
+            type="number"
             placeholder="$50"
             value={inputs.balance}
             onChange={changeHandler}
+            onInput={validateRequest}
           />
+            {error.balance &&
+              <span className="error" >{error.balance}</span>
+          }
         </div>
-        <button type="submit"  className="theme-btn8">
-          ADD FUNDS
-        </button>
+        {inputs.balance && !error.balance 
+         ? <button type="submit"  className="theme-btn8">
+         ADD FUNDS
+       </button>
+        :
+       <button type="submit"  className="theme-btn8" disabled>
+       ADD FUNDS
+     </button>}
       </form>
     </div>
   </div>
@@ -268,15 +301,24 @@ const Profile = () => {
           className="funds"
           name="balance"
           id="funds"
-          type="text"
+          type="number"
           placeholder="$50"
           value={inputs.balance}
           onChange={changeHandler}
+          onInput={validateRequest}
         />
+        {error.balance &&
+              <span className="error" >{error.balance}</span>
+          }
       </div>
-      <button type="submit"  className="theme-btn8">
-        ADD FUNDS
-      </button>
+      {inputs.balance && !error.balance
+         ? <button type="submit"  className="theme-btn8">
+         ADD FUNDS
+       </button>
+        :
+       <button type="submit"  className="theme-btn8" disabled>
+       ADD FUNDS
+     </button>}
     </form>
   </div>
 </div>}
