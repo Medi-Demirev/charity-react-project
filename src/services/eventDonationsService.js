@@ -1,6 +1,6 @@
 import * as request from "./util/requester/requester";
 
-const baseUrl = 'http://localhost:3030/data/eventDonations';
+const baseUrl = 'https://api-kindness.herokuapp.com/data/eventDonations';
 
 
 export const create = (eventId, donation) => request.post(baseUrl, { eventId, donation: donation });

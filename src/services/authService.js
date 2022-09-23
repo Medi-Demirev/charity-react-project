@@ -1,6 +1,6 @@
 import * as request from "./util/requester/requester";
 
-const baseUrl = 'http://localhost:3030/users';
+const baseUrl = 'https://api-kindness.herokuapp.com/users';
 
 export const login = (userData) => 
     request.post(`${baseUrl}/login`, (userData));

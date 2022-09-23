@@ -1,6 +1,6 @@
 import * as request from "./util/requester/requester";
 
-const baseUrl = 'http://localhost:3030/data/causes';
+const baseUrl = 'https://api-kindness.herokuapp.com/data/causes';
 
 export const getAll = () => request.get(baseUrl);
 
