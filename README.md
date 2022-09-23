@@ -20,10 +20,37 @@ For the needs of the project, new collections have been added to the finished se
 The server is hosted at the following address:https://api-kindness.herokuapp.com/. 
 If you want to use it locally, the base URL must be changed from https://api-kindness.herokuapp.com/ to http://localhost:3000/.
 
-# HOME PAGE
+Kindness is an app that aims to create Charitable causes and events to help people in need.Provides an opportunity to register two types of users with different rights => NGO and Personal account. 
+The registered NGO user has the right to create, edit and delete causes and events on the platform. He also has the right to make donations to foreign causes and events. The only limitation of this type of user is that he is not allowed to create a volunteer request.
 
-(./home.png)
-Kindness is an app that aims to create Charitable causes and events to help people in need.Provides an opportunity to register two types of users with different rights.
+Users registered with a Personal Account do not have the right to create causes and events, but they have the right to donate to all active causes and causes. They have no right to change or delete content created by users with an NGO account. Otherwise, they have the right to apply for volunteers by filling in the form in the relevant section.
+
+Both types of accounts have a profile page after logging into the platform, where there is information about their account and the ability to load their wallet with funds to be able to donate to active causes and events.
+
+# Host
+The front-end application is hosted at the following address: https://kindness-a9fed.web.app
+
+The back-end server is hosted at the following address: https://api-kindness.herokuapp.com
+
+# Libraries
+The following libraries are used in the applications:
+
+  "dependencies": {
+    "@material-design-icons/font": "^0.12.0",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "bootstrap": "^5.2.0",
+    "postcode-validator": "^3.7.0",
+    "react": "^18.2.0",
+    "react-css-modules": "^4.7.11",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "react-spinners-css": "^2.0.1",
+    "react-toastify": "^9.0.8",
+    "web-vitals": "^2.1.4"
+  },
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
