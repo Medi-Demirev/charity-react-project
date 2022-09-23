@@ -3,8 +3,7 @@ import { CauseContext } from '../../../contexts/CauseContext';
 import * as causeService from '../../../services/causeService';
 
 import * as postValidator from '../../../services/util/validators/postValidator';
-import * as notifier from '../../../services/util/notifier';
-import { NOTIFICATIONS } from "../../../services/util/constants/notifications";
+
 
 import '../../Causes/CreateCause/CreateCause';
 import map from '../../../assets/12.png';
@@ -51,8 +50,6 @@ const CreateCause = () => {
   const validateRequest = (e) => {
     const fieldName = e.target.name;
     const fieldValue = e.target.value;
-    const pass = inputs.password;
-    const rePass = inputs.repeatPassword;
     let validationResult;
 
     switch (fieldName) {
@@ -87,7 +84,7 @@ const CreateCause = () => {
       ...state,
       [fieldName]: validationResult
     }));
-  }
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();

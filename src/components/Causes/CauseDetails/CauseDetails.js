@@ -8,16 +8,16 @@ import { UserProfileContext } from '../../../contexts/UserProfileContext';
 import  * as causeService from '../../../services/causeService';
 import  * as donationService from '../../../services/donationService';
 import  * as usersProfilesService from '../../../services/usersProfilesService';
-import  LoadingSpinner  from '../../Spinner/Spinner';
+import { TextError } from '../../../services/util/TextError';
 
-import * as validator from '../../../services/util/validator';
+import * as validator from '../../../services/util/validators/userValidator';
 import * as notifier from '../../../services/util/notifier';
 import { NOTIFICATIONS } from "../../../services/util/constants/notifications";
 
 import "./CauseDetails.css";
-import { Alert } from 'bootstrap';
 
-const CauseDetails = (props) => {
+
+const CauseDetails = () => {
 
   let sumRaised = 0;
   let countOfDonations = 0;
@@ -44,29 +44,42 @@ const CauseDetails = (props) => {
 
   const profileId = selected._id;
  
-  const [error, setError] = useState({donation:"" })
+  const [error, setError] = useState({donation:"",  balance:"" });
 
   const changeHandler = (e) => {
+
     setInputs({
       ...inputs,
       [e.target.name]: e.target.value,
     });
   };
-
+  useEffect(() => {
+	causeService.getOne(causeId)
+		.then(causeData => {
+			setCurrentCause(causeData);
+		})
+}, []);
   const validateRequest = (e) => {
+	
+	
 	const fieldName = e.target.name;
 	const fieldValue = e.target.value;
+	const donation = inputs.donation;
+	const balance = selected.balance
+	console.log(balance);
 	let validationResult;
-  
+	
 	switch (fieldName) {
 		case 'donation':
-			validationResult = validator.validateDonaion(fieldValue);
+			validationResult =  (validator.validateDonaion(fieldValue) ||validator.validateNegativeBalance(donation, balance))		
 	}
+
   
 	setError(state => ({
 		...state,
 		[fieldName]: validationResult
 	}));
+	
   };
 
   useEffect(() => {
@@ -77,11 +90,11 @@ const CauseDetails = (props) => {
         fetchCauseDetails(causeId, { ...causeDetails, donations: causeDonations.map(x=> Number( x.donation.donation) )});
         causeDonations.map(x=>sumRaised+= Number( x.donation.donation) );
         causeDonations.map(x=>countOfDonations += Number( x.donation.donors) );
-		causeDonations.map(x =>countOfPercents = x.donation.percentCompleted).slice(-1).pop()
+		    causeDonations.map(x =>countOfPercents = x.donation.percentCompleted).slice(-1).pop()
 		
         setRaised(sumRaised);
         setNumDonations(countOfDonations);
-		setPercents(countOfPercents);
+		    setPercents(countOfPercents);
     })();
 }, []);
 
@@ -91,20 +104,20 @@ const handleIncrementNumDonations = () => {
 };
 
 const handleIncrementRaised = () => {
+
+	
   setRaised(raised + Number(inputs.donation));
   selected.balance = (selected.balance - Number(inputs.donation).toFixed(2));
 
   if (selected.balance < 0) {
-	selected.balance = 0
-	alert('Please add funds to your balance')
-	navigate(`/my-profile/${profileId}`)
-  }
+    selected.balance = 0
+    alert('Please add funds to your balance')
+    navigate(`/my-profile/${profileId}`)
+    }
+    
 
-  usersProfilesService.edit(profileId, (selected ))
-  .then(result => {
-    profileEdit(profileId, selected)
-  });
 };
+
 
   const causeDeleteHandler = () => {
     const confirmation = window.confirm('Are you sure you want to delete this cause?');
@@ -125,30 +138,30 @@ const handleIncrementPercent = () => {
 	
   };
 
- /* const spinnerHandeler = () => {
-    setTimeout(() => {
-		setIsLoading(!isLoading)
-    }, 112000)
-    
-  };*/
 
 const onSubmit = (e) => {
-  e.preventDefault();
 
+  e.preventDefault();
+	  
   const donationData ={
     donation:inputs.donation,
     donors:1,
-	percentCompleted:percents
+	  percentCompleted:percents
   }
 
   donationService.create(causeId, donationData)
       .then(result => {
-        donationAdd(causeId, donationData);
-      });
+        donationAdd(causeId, donationData);     
+        
+        usersProfilesService.edit(profileId, (selected ))
+        .then(result => {
+          profileEdit(profileId, selected)
+    });
+    });
+    inputs.donation = "";
 
-      inputs.donation = "";
-};
-
+ }
+      
 
 function percentage(percent, total) {
     return ((percent / total) * 100).toFixed(2);
@@ -242,7 +255,7 @@ const spanStyle = {
                               onSubmit={onSubmit}
                               className="donation-funds"
                             >
-                              <div className="profile-funds">
+                              <div className="donation-funds">
                                 <label className="donation-label">
                                   Donate funds to this cause
                                 </label>
@@ -254,7 +267,7 @@ const spanStyle = {
                                   placeholder="$50"
                                   value={inputs.donation}
                                   onChange={changeHandler}
-								  onBlur={validateRequest}
+								  onInput={validateRequest}
                                 />
 
                               </div>
