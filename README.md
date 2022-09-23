@@ -23,7 +23,7 @@ If you want to use it locally, the base URL must be changed from https://api-kin
 Kindness is an app that aims to create Charitable causes and events to help people in need.Provides an opportunity to register two types of users with different rights => NGO and Personal account. 
 The registered NGO user has the right to create, edit and delete causes and events on the platform. He also has the right to make donations to foreign causes and events. The only limitation of this type of user is that he is not allowed to create a volunteer request.
 
-Users registered with a Personal Account do not have the right to create causes and events, but they have the right to donate to all active causes and causes. They have no right to change or delete content created by users with an NGO account. Otherwise, they have the right to apply for volunteers by filling in the form in the relevant section.
+Users registered with a Personal Account do not have the right to create causes and events, but they have the right to donate to all active causes and events. They have no right to change or delete content created by users with an NGO account. Otherwise, they have the right to apply for volunteers by filling in the form in the relevant section.
 
 Both types of accounts have a profile page after logging into the platform, where there is information about their account and the ability to load their wallet with funds to be able to donate to active causes and events.
 
@@ -52,7 +52,8 @@ The following libraries are used in the applications:
     "web-vitals": "^2.1.4"
   },
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Under construction
+The in-app search engine is currently not finished and is yet to be implemented!
 
 # Installing Dependencies
 The current repository already includes a node_modules folder with everything necessary. To manually install all necessary dependencies run the following in the console in the main directory and in /src:
