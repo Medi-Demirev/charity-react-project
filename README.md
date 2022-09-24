@@ -28,7 +28,7 @@ Users registered with a Personal Account do not have the right to create causes 
 Both types of accounts have a profile page after logging into the platform, where there is information about their account and the ability to load their wallet with funds to be able to donate to active causes and events.
 
 # Host
-The front-end application is hosted at the following address: https://kindness-a9fed.web.app
+The front-end application is hosted at the following address: https://kindness-6dd13.web.app
 
 The back-end server is hosted at the following address: https://api-kindness.herokuapp.com
 
